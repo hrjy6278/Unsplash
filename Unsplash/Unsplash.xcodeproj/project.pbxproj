@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		74A22596276CD625002DB300 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22595276CD625002DB300 /* NetworkService.swift */; };
+		74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22597276CDAF0002DB300 /* PasingManager.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* ViewController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		74A22595276CD625002DB300 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		74A22597276CDAF0002DB300 /* PasingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasingManager.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74A22594276CD612002DB300 /* NeworkService */ = {
+			isa = PBXGroup;
+			children = (
+				74A22595276CD625002DB300 /* NetworkService.swift */,
+				74A22597276CDAF0002DB300 /* PasingManager.swift */,
+			);
+			path = NeworkService;
+			sourceTree = "<group>";
+		};
 		74BCE1AE276C703B0093B1E6 = {
 			isa = PBXGroup;
 			children = (
@@ -103,6 +116,7 @@
 		74BCE1B9276C703B0093B1E6 /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				74A22594276CD612002DB300 /* NeworkService */,
 				74BCE1F8276C83BF0093B1E6 /* Resource */,
 				74BCE1F4276C83870093B1E6 /* AppLifeCycle */,
 				74BCE1F5276C839B0093B1E6 /* Model */,
@@ -309,6 +323,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A22596276CD625002DB300 /* NetworkService.swift in Sources */,
+				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* ViewController.swift in Sources */,
 				74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
