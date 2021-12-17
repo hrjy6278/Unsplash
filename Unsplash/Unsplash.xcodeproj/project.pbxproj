@@ -103,12 +103,11 @@
 		74BCE1B9276C703B0093B1E6 /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
-				74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */,
-				74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */,
-				74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */,
-				74BCE1BE276C703B0093B1E6 /* ViewController.swift */,
-				74BCE1C3276C703E0093B1E6 /* Assets.xcassets */,
-				74BCE1C5276C703E0093B1E6 /* LaunchScreen.storyboard */,
+				74BCE1F8276C83BF0093B1E6 /* Resource */,
+				74BCE1F4276C83870093B1E6 /* AppLifeCycle */,
+				74BCE1F5276C839B0093B1E6 /* Model */,
+				74BCE1F6276C83A00093B1E6 /* View */,
+				74BCE1F7276C83A60093B1E6 /* Controller */,
 				74BCE1C8276C703E0093B1E6 /* Info.plist */,
 			);
 			path = Unsplash;
@@ -129,6 +128,47 @@
 				74BCE1DD276C703E0093B1E6 /* UnsplashUITestsLaunchTests.swift */,
 			);
 			path = UnsplashUITests;
+			sourceTree = "<group>";
+		};
+		74BCE1F4276C83870093B1E6 /* AppLifeCycle */ = {
+			isa = PBXGroup;
+			children = (
+				74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */,
+				74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */,
+			);
+			path = AppLifeCycle;
+			sourceTree = "<group>";
+		};
+		74BCE1F5276C839B0093B1E6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		74BCE1F6276C83A00093B1E6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				74BCE1C5276C703E0093B1E6 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		74BCE1F7276C83A60093B1E6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */,
+				74BCE1BE276C703B0093B1E6 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		74BCE1F8276C83BF0093B1E6 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				74BCE1C3276C703E0093B1E6 /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
