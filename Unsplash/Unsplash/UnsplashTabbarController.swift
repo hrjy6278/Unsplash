@@ -1,0 +1,17 @@
+//
+//  UnsplashTabbarController.swift
+//  Unsplash
+//
+//  Created by KimJaeYoun on 2021/12/17.
+//
+
+import UIKit
+
+class UnsplashTabbarController: UITabBarController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+}
