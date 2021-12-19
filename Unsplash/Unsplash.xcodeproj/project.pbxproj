@@ -13,7 +13,7 @@
 		74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259B276CE0CB002DB300 /* SearchPhoto.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
-		74BCE1BF276C703B0093B1E6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* ViewController.swift */; };
+		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
 		74BCE1C4276C703E0093B1E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74BCE1C3276C703E0093B1E6 /* Assets.xcassets */; };
 		74BCE1C7276C703E0093B1E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74BCE1C5276C703E0093B1E6 /* LaunchScreen.storyboard */; };
 		74BCE1D2276C703E0093B1E6 /* UnsplashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1D1276C703E0093B1E6 /* UnsplashTests.swift */; };
@@ -49,7 +49,7 @@
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		74BCE1BE276C703B0093B1E6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		74BCE1C3276C703E0093B1E6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74BCE1C6276C703E0093B1E6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74BCE1C8276C703E0093B1E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -178,7 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */,
-				74BCE1BE276C703B0093B1E6 /* ViewController.swift */,
+				74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -331,7 +331,7 @@
 			files = (
 				74A22596276CD625002DB300 /* NetworkService.swift in Sources */,
 				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
-				74BCE1BF276C703B0093B1E6 /* ViewController.swift in Sources */,
+				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
 				74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */,
 				74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
