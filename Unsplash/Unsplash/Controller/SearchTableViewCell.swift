@@ -102,4 +102,10 @@ extension SearchTableViewCell: HierarchySetupable {
         thumbnailImageView.kf.setImage(with: imageUrl,
                                        options: [.keepCurrentImageWhileLoading])
     }
+    
+    override func prepareForReuse() {
+        self.thumbnailImageView.image = nil
+        self.titleLabel.text = nil
+        self.likeCountLabel.text = nil
+    }
 }
