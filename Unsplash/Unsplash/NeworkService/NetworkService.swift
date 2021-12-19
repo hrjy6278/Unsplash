@@ -10,8 +10,7 @@ import Alamofire
 
 struct NetworkService {
     
-    static func searchPhotos<T: Decodable>(_ url: URL,
-                                           type: T.Type,
+    static func searchPhotos<T: Decodable>(type: T.Type,
                                            query: String,
                                            page: Int,
                                            completion: @escaping (Result<T, Error>) -> Void) {
@@ -21,7 +20,7 @@ struct NetworkService {
             "query": query
         ]
         
-        AF.request(url, method: .get, parameters: queryParameter, encoder: .urlEncodedForm).responseData { responseData in
+        AF.request(EndPoint.searchPhotos.description, method: .get, parameters: queryParameter, encoder: .urlEncodedForm).responseData { responseData in
             switch responseData.result {
             case .success(let data):
                 do {
