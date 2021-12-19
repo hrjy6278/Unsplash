@@ -10,9 +10,13 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
+    private var photos = [SeachPhoto.Photo]()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(SearchTableViewCell.self,
+                           forCellReuseIdentifier: SearchTableViewCell.cellID)
         
         return tableView
     }()
@@ -21,6 +25,7 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        configureTableView()
     }
 }
 
@@ -37,6 +42,22 @@ extension SearchViewController: HierarchySetupable {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func configureTableView() {
+        tableView.dataSource = self
+    }
+}
+
+//MARK: - UITableViewDataSource
+extension SearchViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return photos.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        return UITableViewCell()
     }
 }
 
