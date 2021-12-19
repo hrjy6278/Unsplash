@@ -10,12 +10,18 @@ import Alamofire
 
 struct NetworkService {
     
-    static func FindPhotoData<T: Decodable>(_ url: URL,
-                                            type: T.Type,
-                                            queryItem: [String : String],
-                                            completion: @escaping (Result<T, Error>) -> Void) {
+    static func searchPhotos<T: Decodable>(_ url: URL,
+                                           type: T.Type,
+                                           query: String,
+                                           page: Int,
+                                           completion: @escaping (Result<T, Error>) -> Void) {
+        let queryParameter: [String: String] = [
+            "client_id": "UUGSJm9EzJM5tw1ngfNkKSn_OGW26g-O-z5FgLJEPPk",
+            "page": String(page),
+            "query": query
+        ]
         
-        AF.request(url, method: .get, parameters: queryItem, encoder: .urlEncodedForm).responseData { responseData in
+        AF.request(url, method: .get, parameters: queryParameter, encoder: .urlEncodedForm).responseData { responseData in
             switch responseData.result {
             case .success(let data):
                 do {
