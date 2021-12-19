@@ -20,15 +20,17 @@ class SearchViewController: UIViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLayout()
+        setupView()
     }
 }
 
 //MARK: - Method
-extension SearchViewController {
-    private func setupLayout() {
+extension SearchViewController: HierarchySetupable {
+    func setupViewHierarchy() {
         view.addSubview(tableView)
-        
+    }
+    
+    func setupLayout() {
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
