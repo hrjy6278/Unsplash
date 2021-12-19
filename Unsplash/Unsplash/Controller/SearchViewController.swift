@@ -12,6 +12,14 @@ class SearchViewController: UIViewController {
     //MARK: - Properties
     private var photos = [SeachPhoto.Photo]()
     
+    private let searchBar: UISearchBar = {
+        let search = UISearchBar()
+        search.searchBarStyle = .prominent
+        search.translatesAutoresizingMaskIntoConstraints = false
+        
+        return search
+    }()
+    
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +32,7 @@ class SearchViewController: UIViewController {
     //MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         setupView()
         configureTableView()
     }
@@ -33,11 +42,16 @@ class SearchViewController: UIViewController {
 extension SearchViewController: HierarchySetupable {
     func setupViewHierarchy() {
         view.addSubview(tableView)
+        view.addSubview(searchBar)
     }
     
     func setupLayout() {
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
+            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            searchBar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            searchBar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
@@ -60,4 +74,3 @@ extension SearchViewController: UITableViewDataSource {
         return UITableViewCell()
     }
 }
-
