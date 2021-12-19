@@ -11,6 +11,8 @@
 		74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22597276CDAF0002DB300 /* PasingManager.swift */; };
 		74A2259A276CDCAE002DB300 /* EndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22599276CDCAE002DB300 /* EndPoint.swift */; };
 		74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259B276CE0CB002DB300 /* SearchPhoto.swift */; };
+		74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */; };
+		74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -46,6 +48,8 @@
 		74A22597276CDAF0002DB300 /* PasingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasingManager.swift; sourceTree = "<group>"; };
 		74A22599276CDCAE002DB300 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
 		74A2259B276CE0CB002DB300 /* SearchPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhoto.swift; sourceTree = "<group>"; };
+		74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = Unsplash/Controller/SearchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableView.swift"; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -98,6 +102,14 @@
 			path = NeworkService;
 			sourceTree = "<group>";
 		};
+		74A225A1276ECBF9002DB300 /* Supporting */ = {
+			isa = PBXGroup;
+			children = (
+				74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */,
+			);
+			path = Supporting;
+			sourceTree = "<group>";
+		};
 		74BCE1AE276C703B0093B1E6 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 		74BCE1B9276C703B0093B1E6 /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				74A225A1276ECBF9002DB300 /* Supporting */,
 				74A22594276CD612002DB300 /* NeworkService */,
 				74BCE1F8276C83BF0093B1E6 /* Resource */,
 				74BCE1F4276C83870093B1E6 /* AppLifeCycle */,
@@ -169,6 +182,7 @@
 		74BCE1F6276C83A00093B1E6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */,
 				74BCE1C5276C703E0093B1E6 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -329,8 +343,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */,
 				74A22596276CD625002DB300 /* NetworkService.swift in Sources */,
 				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
+				74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
 				74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */,
 				74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */,

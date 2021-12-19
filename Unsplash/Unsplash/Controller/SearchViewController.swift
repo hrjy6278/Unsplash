@@ -26,7 +26,9 @@ class SearchViewController: UIViewController {
 
 //MARK: - Method
 extension SearchViewController {
-    func setupLayout() {
+    private func setupLayout() {
+        view.addSubview(tableView)
+        
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.topAnchor),
             tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
