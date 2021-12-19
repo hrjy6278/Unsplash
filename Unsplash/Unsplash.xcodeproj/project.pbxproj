@@ -13,6 +13,7 @@
 		74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259B276CE0CB002DB300 /* SearchPhoto.swift */; };
 		74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */; };
 		74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */; };
+		74A225A6276ED23D002DB300 /* HierarchySetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A5276ED23D002DB300 /* HierarchySetupable.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -50,6 +51,7 @@
 		74A2259B276CE0CB002DB300 /* SearchPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhoto.swift; sourceTree = "<group>"; };
 		74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = Unsplash/Controller/SearchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableView.swift"; sourceTree = "<group>"; };
+		74A225A5276ED23D002DB300 /* HierarchySetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySetupable.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -105,9 +107,26 @@
 		74A225A1276ECBF9002DB300 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
-				74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */,
+				74A225A4276ED106002DB300 /* Protocol */,
+				74A225A3276ED0FC002DB300 /* Extension */,
 			);
 			path = Supporting;
+			sourceTree = "<group>";
+		};
+		74A225A3276ED0FC002DB300 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		74A225A4276ED106002DB300 /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				74A225A5276ED23D002DB300 /* HierarchySetupable.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		74BCE1AE276C703B0093B1E6 = {
@@ -351,6 +370,7 @@
 				74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */,
 				74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
+				74A225A6276ED23D002DB300 /* HierarchySetupable.swift in Sources */,
 				74A2259A276CDCAE002DB300 /* EndPoint.swift in Sources */,
 				74BCE1EB276C75380093B1E6 /* UnsplashTabbarController.swift in Sources */,
 			);

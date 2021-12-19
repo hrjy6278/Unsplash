@@ -51,4 +51,42 @@ class SearchTableViewCell: UITableViewCell {
         
         return stackView
     }()
+    
+    //MARK: - init
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("스토리보드는 지원하지 않습니다.")
+    }
+}
+
+//MARK: - Method
+extension SearchTableViewCell: HierarchySetupable {
+    func setupViewHierarchy() {
+        addSubview(thumbnailImageView)
+        addSubview(contentStackView)
+    }
+    
+    func setupLayout() {
+        let stackViewTopConstant: CGFloat = 8
+        let stackViewLeadingConstant: CGFloat = 8
+        let stackViewBottomConstant: CGFloat = -40
+        
+        NSLayoutConstraint.activate([
+            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            contentStackView.topAnchor.constraint(equalTo: topAnchor,
+                                                  constant: stackViewTopConstant),
+            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
+                                                      constant: stackViewLeadingConstant),
+            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor,
+                                                     constant: stackViewBottomConstant)
+        ])
+    }
 }
