@@ -16,7 +16,8 @@ class SearchViewController: UIViewController {
         let search = UISearchBar()
         search.searchBarStyle = .prominent
         search.translatesAutoresizingMaskIntoConstraints = false
-        
+        search.placeholder = "검색어를 입력해주세요."
+        search.autocapitalizationType = .none
         return search
     }()
     
@@ -35,6 +36,7 @@ class SearchViewController: UIViewController {
         view.backgroundColor = .white
         setupView()
         configureTableView()
+        configureSearchBar()
     }
 }
 
@@ -61,6 +63,10 @@ extension SearchViewController: HierarchySetupable {
     private func configureTableView() {
         tableView.dataSource = self
     }
+    
+    private func configureSearchBar() {
+        searchBar.delegate = self
+    }
 }
 
 //MARK: - UITableViewDataSource
@@ -72,5 +78,11 @@ extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         return UITableViewCell()
+    }
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
     }
 }
