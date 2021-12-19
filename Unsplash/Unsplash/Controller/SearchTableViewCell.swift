@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class SearchTableViewCell: UITableViewCell {
     
@@ -88,5 +89,14 @@ extension SearchTableViewCell: HierarchySetupable {
             contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor,
                                                      constant: stackViewBottomConstant)
         ])
+    }
+    
+    func configure(title: String?, likeCount: String?, imageUrl: URL?) {
+        titleLabel.text = title
+        likeCountLabel.text = likeCount
+        
+        thumbnailImageView.kf.indicatorType = .activity
+        thumbnailImageView.kf.setImage(with: imageUrl,
+                                       options: [.keepCurrentImageWhileLoading])
     }
 }
