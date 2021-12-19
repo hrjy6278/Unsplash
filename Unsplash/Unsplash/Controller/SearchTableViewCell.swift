@@ -15,6 +15,7 @@ class SearchTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         
         return imageView
     }()
@@ -48,6 +49,7 @@ class SearchTableViewCell: UITableViewCell {
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .equalSpacing
+        stackView.alignment = .leading
         stackView.spacing = 8
         
         return stackView
@@ -67,14 +69,17 @@ class SearchTableViewCell: UITableViewCell {
 //MARK: - Method
 extension SearchTableViewCell: HierarchySetupable {
     func setupViewHierarchy() {
+        contentStackView.addArrangedSubview(titleLabel)
+        contentStackView.addArrangedSubview(likeCountLabel)
+        contentStackView.addArrangedSubview(likeButton)
+        
         addSubview(thumbnailImageView)
         addSubview(contentStackView)
     }
     
     func setupLayout() {
-        let stackViewTopConstant: CGFloat = 8
-        let stackViewLeadingConstant: CGFloat = 8
-        let stackViewBottomConstant: CGFloat = -40
+        let stackViewTopConstant: CGFloat = 16
+        let stackViewLeadingConstant: CGFloat = 16
         
         NSLayoutConstraint.activate([
             thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
@@ -86,8 +91,6 @@ extension SearchTableViewCell: HierarchySetupable {
                                                   constant: stackViewTopConstant),
             contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                       constant: stackViewLeadingConstant),
-            contentStackView.bottomAnchor.constraint(equalTo: bottomAnchor,
-                                                     constant: stackViewBottomConstant)
         ])
     }
     
