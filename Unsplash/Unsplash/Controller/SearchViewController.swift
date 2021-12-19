@@ -10,7 +10,13 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
-    private var photos = [SeachPhoto.Photo]()
+    private var photos = [Photo]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -83,6 +89,20 @@ extension SearchViewController: UITableViewDataSource {
 
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let query = searchBar.text else { return }
         
+        NetworkService.searchPhotos(type: SeachPhoto.self,
+                                    query: query,
+                                    page: 1) { [weak self] result in
+            switch result {
+            case .success(let photoResult):
+                self?.photos = photoResult.Photos
+            case .failure(let error):
+                //MARK: Todo: 에러메시지 출력
+                print(error.localizedDescription)
+            }
+        }
+        
+        searchBar.resignFirstResponder()
     }
 }
