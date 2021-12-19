@@ -82,8 +82,18 @@ extension SearchViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellID,
+                                                       for: indexPath) as? SearchTableViewCell else {
+            return UITableViewCell()
+        }
         
-        return UITableViewCell()
+        let photo = photos[indexPath.row]
+        
+        cell.configure(title: photo.user?.username,
+                       likeCount: String(photo.likes),
+                       imageUrl: photo.urls.regularURL)
+        
+        return cell
     }
 }
 
