@@ -12,7 +12,7 @@ struct KeyChainStore {
     
     enum KeyChainError: Error {
         case stringToDataConversionError
-        case error(description: OSStatus)
+        case error(message: String)
     }
     
     private var query: [String: Any] = [
@@ -42,6 +42,31 @@ struct KeyChainStore {
             status = SecItemAdd(query as CFDictionary, nil)
         default:
             throw KeyChainError.error(description: status)
+        }
+    }
+    
+    func getValue(for userAccount: String) throws -> String? {
+        var query = query
+        query[String(kSecMatchLimit)] = kSecMatchLimitOne
+        query[String(kSecReturnAttributes)] = kCFBooleanTrue
+        query[String(kSecReturnData)] = kCFBooleanTrue
+        query[String(kSecAttrAccount)] = userAccount
+        
+        var queryResult: AnyObject?
+        let status = withUnsafeMutablePointer(to: &queryResult) {
+            SecItemCopyMatching(query as CFDictionary, $0)
+        }
+        
+        switch status {
+        case errSecSuccess:
+            guard let queriedItem = queryResult as? [String: Any],
+                  let passwordData = queriedItem[String(kSecValueData)] as? Data,
+                  let password = String(data: passwordData, encoding: .utf8) else {
+                  return nil
+              }
+            return password
+        default:
+            return nil
         }
     }
 }
