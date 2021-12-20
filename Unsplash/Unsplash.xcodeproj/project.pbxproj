@@ -108,7 +108,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		74A22594276CD612002DB300 /* NeworkService */ = {
+		74A22594276CD612002DB300 /* NetworkService */ = {
 			isa = PBXGroup;
 			children = (
 				74A225B92770A785002DB300 /* OAuth */,
@@ -118,7 +118,7 @@
 				74A225A7277048CE002DB300 /* UnsplashRouter.swift */,
 				74A22597276CDAF0002DB300 /* PasingManager.swift */,
 			);
-			path = NeworkService;
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 		74A225A1276ECBF9002DB300 /* Supporting */ = {
@@ -190,7 +190,7 @@
 			children = (
 				74A225AD27706A77002DB300 /* Keychain */,
 				74A225A1276ECBF9002DB300 /* Supporting */,
-				74A22594276CD612002DB300 /* NeworkService */,
+				74A22594276CD612002DB300 /* NetworkService */,
 				74BCE1F8276C83BF0093B1E6 /* Resource */,
 				74BCE1F4276C83870093B1E6 /* AppLifeCycle */,
 				74BCE1F5276C839B0093B1E6 /* Model */,
