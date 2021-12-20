@@ -18,6 +18,10 @@ class SearchViewController: UIViewController {
         }
     }
     
+    private let networkService = NetworkService()
+    private var page: Int = 1
+    private var query: String = ""
+    
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
         search.searchBarStyle = .prominent
@@ -68,11 +72,28 @@ extension SearchViewController: HierarchySetupable {
     
     private func configureTableView() {
         tableView.dataSource = self
+        tableView.delegate = self
         tableView.rowHeight = view.frame.size.height / 4
     }
     
     private func configureSearchBar() {
         searchBar.delegate = self
+    }
+    
+    private func searchPhotos(for page: Int, query: String) {
+        networkService.searchPhotos(type: SearchPhoto.self,
+                                    query: query,
+                                    page: page) { [weak self] result in
+            self?.page += 1
+            
+            switch result {
+            case .success(let photoResult):
+                photoResult.photos.forEach { self?.photos.append($0) }
+            case .failure(let error):
+                //MARK: Todo: 에러메시지 출력
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 
@@ -98,22 +119,29 @@ extension SearchViewController: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
+extension SearchViewController: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let contentHeight = scrollView.contentSize.height
+        let yOffset = scrollView.contentOffset.y
+        let heightRemainBottomHeight = contentHeight - yOffset
+        
+        let frameHeight = scrollView.frame.size.height
+        
+        if heightRemainBottomHeight < frameHeight && photos.isEmpty == false  {
+            searchPhotos(for: self.page, query: self.query)
+        }
+    }
+}
+
+//MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        
-        NetworkService.searchPhotos(type: SeachPhoto.self,
-                                    query: query,
-                                    page: 1) { [weak self] result in
-            switch result {
-            case .success(let photoResult):
-                self?.photos = photoResult.Photos
-            case .failure(let error):
-                //MARK: Todo: 에러메시지 출력
-                print(error.localizedDescription)
-            }
-        }
-        
+        self.query = query
+        self.page = 1
+        searchPhotos(for: self.page, query: query)
         searchBar.resignFirstResponder()
     }
 }
