@@ -18,7 +18,7 @@ class SearchViewController: UIViewController {
         }
     }
     
-    private let networkService = NetworkService()
+    private let networkService = UnsplashAPIManager()
     private var page: Int = 1
     private var query: String = ""
     
