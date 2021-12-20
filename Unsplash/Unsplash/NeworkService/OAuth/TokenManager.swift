@@ -11,6 +11,7 @@ final class TokenManager {
     
     enum TokenManagerError: Error {
         case saveError(message: String)
+        case fetchError(message: String)
     }
     //MARK: Properties
     private let userAccount = "accessToken"
@@ -28,7 +29,16 @@ extension TokenManager {
         do {
             try keyChaineStore.setValue(unsplashToken.accessToken, for: userAccount)
         } catch let error {
-           throw TokenManagerError.saveError(message: error.localizedDescription)
+            throw TokenManagerError.saveError(message: error.localizedDescription)
+        }
+    }
+    
+    func fetchAcessToken() throws -> String? {
+        do {
+            let token = try keyChaineStore.getValue(for: userAccount)
+            return token
+        } catch let error {
+            throw TokenManagerError.fetchError(message: error.localizedDescription)
         }
     }
 }
