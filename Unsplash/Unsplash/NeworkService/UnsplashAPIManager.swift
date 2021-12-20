@@ -11,6 +11,14 @@ import Alamofire
 final class UnsplashAPIManager {
     private var isFetching = false
     
+    private let sessionManager: Session = {
+        let interceptor = UnsplashInterceptor()
+    
+        let session = Session(interceptor: interceptor)
+        
+        return session
+    }()
+    
     func searchPhotos<T: Decodable>(type: T.Type,
                                     query: String,
                                     page: Int,
@@ -19,7 +27,7 @@ final class UnsplashAPIManager {
         guard isFetching == false else { return }
         
         self.isFetching = true
-        AF.request(UnsplashRouter.searchPhotos(query: query, page: page))
+        sessionManager.request(UnsplashRouter.searchPhotos(query: query, page: page))
             .responseData { responseData in
                 
                 self.isFetching = false
