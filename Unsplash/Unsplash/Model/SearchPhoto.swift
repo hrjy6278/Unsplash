@@ -8,19 +8,19 @@
 import Foundation
 import SwiftUI
 
-struct SeachPhoto: Codable {
+struct SearchPhoto: Decodable {
     let total: Int
     let totalPages: Int
-    let Photos: [Photo]
+    let photos: [Photo]
     
     enum CodingKeys: String, CodingKey {
         case total
-        case Photos = "results"
+        case photos = "results"
         case totalPages = "total_pages"
     }
 }
 
-struct Photo: Codable {
+struct Photo: Decodable {
     let id: String
     let createdAt: String
     let description: String?
@@ -35,7 +35,7 @@ struct Photo: Codable {
     }
 }
 
-struct PhotoLink: Codable {
+struct PhotoLink: Decodable {
     let linksSelf, html, download : String
     
     enum CodingKeys: String, CodingKey {
@@ -44,7 +44,7 @@ struct PhotoLink: Codable {
     }
 }
 
-struct Urls: Codable {
+struct Urls: Decodable {
     let raw, full, regular, small, thumb: String
     
     var regularURL: URL? {
@@ -52,11 +52,11 @@ struct Urls: Codable {
     }
 }
 
-struct ProfileImage: Codable {
+struct ProfileImage: Decodable {
     let small, medium, large: String
 }
 
-struct User: Codable {
+struct User: Decodable {
     let id: String
     let username: String?
 }
