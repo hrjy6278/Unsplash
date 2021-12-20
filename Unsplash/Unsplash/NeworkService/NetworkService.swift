@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 final class NetworkService {
-    var isFetching = false
+    private var isFetching = false
     
     func searchPhotos<T: Decodable>(type: T.Type,
                                     query: String,
@@ -25,7 +25,11 @@ final class NetworkService {
         ]
         
         self.isFetching = true
-        AF.request(EndPoint.searchPhotos.description, method: .get, parameters: queryParameter, encoder: .urlEncodedForm).responseData { responseData in
+        AF.request(String(describing: EndPoint.searchPhotos),
+                   method: .get,
+                   parameters: queryParameter,
+                   encoder: .urlEncodedForm).responseData { responseData in
+            
             self.isFetching = false
             switch responseData.result {
             case .success(let data):

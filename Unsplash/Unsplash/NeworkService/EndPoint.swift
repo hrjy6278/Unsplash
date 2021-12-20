@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EndPoint {
+enum EndPoint: CustomStringConvertible {
     private static var BaseURL = "https://api.unsplash.com/"
     
     case searchPhotos
