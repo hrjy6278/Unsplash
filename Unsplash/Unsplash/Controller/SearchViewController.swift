@@ -141,6 +141,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let query = searchBar.text else { return }
         self.query = query
         self.page = 1
+        self.photos = []
         searchPhotos(for: self.page, query: query)
         searchBar.resignFirstResponder()
     }
