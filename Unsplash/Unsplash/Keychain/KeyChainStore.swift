@@ -72,9 +72,15 @@ struct KeyChainStore {
         }
     }
     
-    func removeValue(for userAccount: String) throws {
+    func removeValue(for userAccount: String) {
         var query = query
         query[String(kSecAttrAccount)] = userAccount
+        
+        removeAll(query: query)
+    }
+    
+    func removeAll(query: [String: Any]) {
+        let query = query
         
         SecItemDelete(query as CFDictionary)
     }
