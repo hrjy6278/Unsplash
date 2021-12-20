@@ -9,6 +9,7 @@ import UIKit
 
 class UnsplashTabbarController: UITabBarController {
 
+    //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Unsplash"
@@ -16,6 +17,7 @@ class UnsplashTabbarController: UITabBarController {
     }
 }
 
+//MARK: - Method
 extension UnsplashTabbarController {
     private func configure() {
         let searchViewController = SearchViewController()

@@ -13,5 +13,3 @@ struct TokenQuery: KeyChainQueryable {
         String(kSecAttrService): "UnsplashService"
     ]
 }
-
-

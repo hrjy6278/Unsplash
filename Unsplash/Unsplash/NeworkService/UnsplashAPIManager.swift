@@ -9,16 +9,18 @@ import Foundation
 import Alamofire
 
 final class UnsplashAPIManager {
+    //MARK: Properties
     private var isFetching = false
-    
     private let sessionManager: Session = {
         let interceptor = UnsplashInterceptor()
-    
         let session = Session(interceptor: interceptor)
         
         return session
     }()
-    
+}
+
+//MARK: - Method
+extension UnsplashAPIManager {
     func searchPhotos<T: Decodable>(type: T.Type,
                                     query: String,
                                     page: Int,

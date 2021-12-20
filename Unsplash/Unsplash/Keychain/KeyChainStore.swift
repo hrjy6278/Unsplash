@@ -9,18 +9,22 @@ import Foundation
 import Security
 
 struct KeyChainStore {
-    
     enum KeyChainError: Error {
         case stringToDataConversionError
         case error(message: String)
     }
     
+    //MARK: Properties
     private var queryable: KeyChainQueryable
     
+    //MARK: init
     init(queryable: KeyChainQueryable) {
         self.queryable = queryable
     }
+}
 
+//MARK: - Method
+extension KeyChainStore {
     func setValue(_ value: String, for userAccount: String) throws {
         guard let encodedPassword = value.data(using: .utf8) else {
             throw KeyChainError.stringToDataConversionError

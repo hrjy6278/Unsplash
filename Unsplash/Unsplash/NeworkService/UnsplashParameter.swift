@@ -7,10 +7,7 @@
 
 import Foundation
 
-
-
 enum UnsplashParameter {
-    
     enum Scope: String, CaseIterable {
         case writeLikes = "write_likes"
         case readPhotos = "read_photos"

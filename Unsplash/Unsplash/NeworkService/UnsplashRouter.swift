@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-enum UnsplashRouter: URLRequestConvertible {
+enum UnsplashRouter {
     case searchPhotos(query: String, page: Int)
     case userAuthorize
     case fetchAccessToken(accessCode: String)
@@ -65,8 +65,10 @@ enum UnsplashRouter: URLRequestConvertible {
             ]
         }
     }
-    
-    
+}
+
+//MARK: - Method
+extension UnsplashRouter: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         let url = try baseURL.asURL().appendingPathComponent(path)
         var request = URLRequest(url: url)
