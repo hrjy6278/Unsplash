@@ -17,6 +17,7 @@
 		74A225AA277053DA002DB300 /* UnsplashParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A9277053DA002DB300 /* UnsplashParameter.swift */; };
 		74A225AC2770642B002DB300 /* UnsplashInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225AB2770642B002DB300 /* UnsplashInterceptor.swift */; };
 		74A225AF27706A97002DB300 /* KeyChainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225AE27706A97002DB300 /* KeyChainStore.swift */; };
+		74A225B82770A781002DB300 /* UnsplashAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225B72770A781002DB300 /* UnsplashAccessToken.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -58,6 +59,7 @@
 		74A225A9277053DA002DB300 /* UnsplashParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashParameter.swift; sourceTree = "<group>"; };
 		74A225AB2770642B002DB300 /* UnsplashInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashInterceptor.swift; sourceTree = "<group>"; };
 		74A225AE27706A97002DB300 /* KeyChainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStore.swift; sourceTree = "<group>"; };
+		74A225B72770A781002DB300 /* UnsplashAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAccessToken.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		74A22594276CD612002DB300 /* NeworkService */ = {
 			isa = PBXGroup;
 			children = (
+				74A225B92770A785002DB300 /* OAuth */,
 				74A22595276CD625002DB300 /* UnsplashAPIManager.swift */,
 				74A225A9277053DA002DB300 /* UnsplashParameter.swift */,
 				74A225AB2770642B002DB300 /* UnsplashInterceptor.swift */,
@@ -143,6 +146,14 @@
 				74A225AE27706A97002DB300 /* KeyChainStore.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		74A225B92770A785002DB300 /* OAuth */ = {
+			isa = PBXGroup;
+			children = (
+				74A225B72770A781002DB300 /* UnsplashAccessToken.swift */,
+			);
+			path = OAuth;
 			sourceTree = "<group>";
 		};
 		74BCE1AE276C703B0093B1E6 = {
@@ -381,6 +392,7 @@
 			files = (
 				74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */,
 				74A22596276CD625002DB300 /* UnsplashAPIManager.swift in Sources */,
+				74A225B82770A781002DB300 /* UnsplashAccessToken.swift in Sources */,
 				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
 				74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
