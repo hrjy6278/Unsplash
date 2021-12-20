@@ -72,6 +72,13 @@ struct KeyChainStore {
         }
     }
     
+    func removeValue(for userAccount: String) throws {
+        var query = query
+        query[String(kSecAttrAccount)] = userAccount
+        
+        SecItemDelete(query as CFDictionary)
+    }
+    
     private func error(status: OSStatus) -> KeyChainError {
         let errorMessage = SecCopyErrorMessageString(status, nil) as String? ?? ""
         
