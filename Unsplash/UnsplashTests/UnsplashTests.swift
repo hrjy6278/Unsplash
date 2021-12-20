@@ -9,25 +9,69 @@ import XCTest
 @testable import Unsplash
 
 class UnsplashTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    let sut = KeyChainStore()
+    
+    override func tearDown() {
+        super.tearDown()
+        self.sut.removeAll()
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_키체인에_패스워드를_넣으면_저장이된다() {
+        //given
+        let password = "1234"
+        
+        //when
+        try! sut.setValue(password, for: "Unsplash")
+        
+        //then
+        let keychainPassword = try! sut.getValue(for: "Unsplash")
+        
+        XCTAssertEqual(password, keychainPassword)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func test_키체인에_패스워드를_변경하면_변경이된다() {
+        //given
+        let firstPassword = "1234"
+        let secondPassword = "5678"
+        
+        //when
+        try! sut.setValue(firstPassword, for: "UnsplashPassword")
+        try! sut.setValue(secondPassword, for: "UnsplashPassword")
+        
+        //then
+        let keychainPassword = try! sut.getValue(for: "UnsplashPassword")
+        XCTAssertEqual(secondPassword, keychainPassword)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_키체인의_아이템이_정상적으로_삭제된다() {
+        //given
+        let password = "1234"
+        
+        //when
+        try! sut.setValue(password, for: "UnsplashPassword")
+        sut.removeValue(for: "UnsplashPassword")
+        
+        //then
+        XCTAssertNil(try sut.getValue(for: "UnsplashPassword"))
     }
-
+    
+    func test_키체인의_아이템이_전부삭제된다() {
+        //given
+        let firstPassword = "1234"
+        let secondPassword = "5678"
+        let thirdPassword = "0000"
+        
+        //when
+        try! sut.setValue(firstPassword, for: "firstPassword")
+        try! sut.setValue(secondPassword, for: "secondPassword")
+        try! sut.setValue(thirdPassword, for: "thirdPassword")
+        
+        sut.removeAll()
+        
+        //then
+        XCTAssertNil(try sut.getValue(for: "firstPassword"))
+        XCTAssertNil(try sut.getValue(for: "secondPassword"))
+        XCTAssertNil(try sut.getValue(for: "thirdPassword"))
+    }
+    
 }
