@@ -41,7 +41,7 @@ struct KeyChainStore {
             query[String(kSecValueData)] = encodedPassword
             status = SecItemAdd(query as CFDictionary, nil)
         default:
-            throw KeyChainError.error(description: status)
+            throw error(status: status)
         }
     }
     
@@ -62,11 +62,19 @@ struct KeyChainStore {
             guard let queriedItem = queryResult as? [String: Any],
                   let passwordData = queriedItem[String(kSecValueData)] as? Data,
                   let password = String(data: passwordData, encoding: .utf8) else {
-                  return nil
-              }
+                      return nil
+                  }
             return password
+        case errSecItemNotFound:
+            throw error(status: status)
         default:
             return nil
         }
+    }
+    
+    private func error(status: OSStatus) -> KeyChainError {
+        let errorMessage = SecCopyErrorMessageString(status, nil) as String? ?? ""
+        
+        return KeyChainError.error(message: errorMessage)
     }
 }
