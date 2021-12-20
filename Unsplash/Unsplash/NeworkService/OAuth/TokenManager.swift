@@ -41,4 +41,8 @@ extension TokenManager {
             throw TokenManagerError.fetchError(message: error.localizedDescription)
         }
     }
+    
+    func clearAccessToken() {
+        keyChaineStore.removeValue(for: userAccount)
+    }
 }
