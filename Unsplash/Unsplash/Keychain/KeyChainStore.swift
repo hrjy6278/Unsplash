@@ -15,17 +15,18 @@ struct KeyChainStore {
         case error(message: String)
     }
     
-    private var query: [String: Any] = [
-        String(kSecClass): kSecClassGenericPassword,
-        String(kSecAttrService): "UnsplashService"
-    ]
+    private var queryable: KeyChainQueryable
     
+    init(queryable: KeyChainQueryable) {
+        self.queryable = queryable
+    }
+
     func setValue(_ value: String, for userAccount: String) throws {
         guard let encodedPassword = value.data(using: .utf8) else {
             throw KeyChainError.stringToDataConversionError
         }
         
-        var query = self.query
+        var query = self.queryable.query
         
         query[String(kSecAttrAccount)] = userAccount
         
@@ -46,7 +47,7 @@ struct KeyChainStore {
     }
     
     func getValue(for userAccount: String) throws -> String? {
-        var query = query
+        var query = self.queryable.query
         query[String(kSecMatchLimit)] = kSecMatchLimitOne
         query[String(kSecReturnAttributes)] = kCFBooleanTrue
         query[String(kSecReturnData)] = kCFBooleanTrue
@@ -73,14 +74,14 @@ struct KeyChainStore {
     }
     
     func removeValue(for userAccount: String) {
-        var query = query
+        var query = queryable.query
         query[String(kSecAttrAccount)] = userAccount
         
         SecItemDelete(query as CFDictionary)
     }
     
     func removeAll() {
-        let query = query
+        let query = queryable.query
         
         SecItemDelete(query as CFDictionary)
     }

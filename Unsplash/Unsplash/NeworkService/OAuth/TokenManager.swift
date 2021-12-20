@@ -8,14 +8,14 @@
 import Foundation
 
 final class TokenManager {
-    
     enum TokenManagerError: Error {
         case saveError(message: String)
         case fetchError(message: String)
     }
+    
     //MARK: Properties
     private let userAccount = "accessToken"
-    private let keyChaineStore = KeyChainStore()
+    private let keyChaineStore = KeyChainStore(queryable: TokenQuery())
     
     static let shared = TokenManager()
     
