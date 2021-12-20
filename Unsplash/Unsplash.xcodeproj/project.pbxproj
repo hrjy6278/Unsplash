@@ -16,6 +16,7 @@
 		74A225A8277048CE002DB300 /* UnsplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A7277048CE002DB300 /* UnsplashRouter.swift */; };
 		74A225AA277053DA002DB300 /* UnsplashParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A9277053DA002DB300 /* UnsplashParameter.swift */; };
 		74A225AC2770642B002DB300 /* UnsplashInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225AB2770642B002DB300 /* UnsplashInterceptor.swift */; };
+		74A225AF27706A97002DB300 /* KeyChainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225AE27706A97002DB300 /* KeyChainStore.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -56,6 +57,7 @@
 		74A225A7277048CE002DB300 /* UnsplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashRouter.swift; sourceTree = "<group>"; };
 		74A225A9277053DA002DB300 /* UnsplashParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashParameter.swift; sourceTree = "<group>"; };
 		74A225AB2770642B002DB300 /* UnsplashInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashInterceptor.swift; sourceTree = "<group>"; };
+		74A225AE27706A97002DB300 /* KeyChainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainStore.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -135,6 +137,14 @@
 			path = Protocol;
 			sourceTree = "<group>";
 		};
+		74A225AD27706A77002DB300 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				74A225AE27706A97002DB300 /* KeyChainStore.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
 		74BCE1AE276C703B0093B1E6 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +168,7 @@
 		74BCE1B9276C703B0093B1E6 /* Unsplash */ = {
 			isa = PBXGroup;
 			children = (
+				74A225AD27706A77002DB300 /* Keychain */,
 				74A225A1276ECBF9002DB300 /* Supporting */,
 				74A22594276CD612002DB300 /* NeworkService */,
 				74BCE1F8276C83BF0093B1E6 /* Resource */,
@@ -373,6 +384,7 @@
 				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
 				74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
+				74A225AF27706A97002DB300 /* KeyChainStore.swift in Sources */,
 				74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */,
 				74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
