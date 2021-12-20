@@ -10,8 +10,12 @@ import Alamofire
 
 final class UnsplashInterceptor: RequestInterceptor {
     func adapt(_ urlRequest: URLRequest, for session: Session, completion: @escaping (Result<URLRequest, Error>) -> Void) {
-        //MARK: Todo 키체인을 활용하여 token 넣어주기
+        var request = urlRequest
         
-        completion(.success(urlRequest))
+        if let token = try? TokenManager.shared.fetchAcessToken() {
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        }
+        
+        completion(.success(request))
     }
 }
