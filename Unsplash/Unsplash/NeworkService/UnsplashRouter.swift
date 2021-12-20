@@ -16,7 +16,7 @@ enum UnsplashRouter: URLRequestConvertible {
     var baseURL: String {
         switch self {
         case .searchPhotos:
-            return "https://api.unsplash.com/"
+            return "https://api.unsplash.com"
         case .fetchAccessToken, .userAuthorize:
             return "https://unsplash.com"
         }
@@ -25,7 +25,7 @@ enum UnsplashRouter: URLRequestConvertible {
     var path: String {
         switch self {
         case .searchPhotos:
-            return "search/photos"
+            return "/search/photos"
         case .fetchAccessToken, .userAuthorize:
             return "/oauth/authorize"
         }

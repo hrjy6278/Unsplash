@@ -66,9 +66,9 @@ struct KeyChainStore {
                   }
             return password
         case errSecItemNotFound:
-            throw error(status: status)
-        default:
             return nil
+        default:
+            throw error(status: status)
         }
     }
     
@@ -76,10 +76,10 @@ struct KeyChainStore {
         var query = query
         query[String(kSecAttrAccount)] = userAccount
         
-        removeAll(query: query)
+        SecItemDelete(query as CFDictionary)
     }
     
-    func removeAll(query: [String: Any]) {
+    func removeAll() {
         let query = query
         
         SecItemDelete(query as CFDictionary)
