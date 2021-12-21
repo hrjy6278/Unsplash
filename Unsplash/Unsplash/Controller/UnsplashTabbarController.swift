@@ -22,6 +22,11 @@ class UnsplashTabbarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureNavigation()
     }
 }
@@ -44,6 +49,7 @@ extension UnsplashTabbarController {
     private func configureNavigation() {
         navigationItem.title = "Unsplash"
         navigationItem.rightBarButtonItem = loginButton
+        navigationController?.navigationBar.backgroundColor = .gray
     }
     
     @objc func didTapLoginButton(_ sender: UIBarButtonItem) {
