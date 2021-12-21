@@ -46,4 +46,17 @@ extension UnsplashAPIManager {
                 }
             }
     }
+    
+    func fetchAccessToken(accessCode: String, completion: @escaping (Bool) -> Void) {
+        sessionManager.request(UnsplashRouter.fetchAccessToken(accessCode: accessCode)).responseDecodable(of: UnsplashAccessToken.self) { reponseJson in
+            guard let token = reponseJson.value else { return completion(false) }
+
+            do {
+                try TokenManager.shared.saveAccessToken(unsplashToken: token)
+                completion(true)
+            } catch {
+                completion(false)
+            }
+        }
+    }
 }
