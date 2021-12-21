@@ -98,18 +98,24 @@ extension SearchViewController: HierarchySetupable {
     }
     
     private func photoLike(photoId: String) {
-        networkService.photoLike(id: photoId) { [weak self] result in
-            guard let self = self else { return }
+        guard let index = photos.firstIndex(where: { $0.id == photoId }) else { return }
+        
+        if photos[index].isUserLike {
+            networkService.photoUnlike(id: photoId, completion: judgeLikeResult(_:))
+        } else {
+            networkService.photoLike(id: photoId, completion: judgeLikeResult(_:))
+        }
+    }
+    
+    private func judgeLikeResult(_ result: Result<PhotoLike, Error>) {
+        switch result {
+        case .success(let photoResult):
+            self.photos.firstIndex { $0.id == photoResult.photo.id }
+            .map { Int($0) }
+            .flatMap { self.photos[$0].isUserLike = photoResult.photo.isUserLike }
             
-            switch result {
-            case .success(let photoResult):
-                self.photos.firstIndex { $0.id == photoResult.photo.id }
-                .map { Int($0) }
-                .flatMap { self.photos[$0].isUserLike = photoResult.photo.isUserLike }
-                
-            case .failure:
-                print("좋아요를 실패했습니다..")
-            }
+        case .failure:
+            print("에러발생")
         }
     }
 }
@@ -167,6 +173,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - Search TableView Cell Delegate(Like Button Tap)
 extension SearchViewController: SearchTableViewCellDelegate {
     func didTapedLikeButton(_ id: String) {
         guard TokenManager.shared.isTokenSaved else { return }
