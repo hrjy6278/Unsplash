@@ -27,19 +27,18 @@ extension LoginViewController {
         guard let URL = try? UnsplashRouter.userAuthorize.asURLRequest().url else {
             return
         }
-        
+        let ASwebCallbackURLScheme = "jissCallback"
         
         webAuthenticationSession = ASWebAuthenticationSession(url: URL,
-                                                              callbackURLScheme: "jissCallback") { [weak self] callBack, erorr in
+                                                              callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBack, erorr in
             guard erorr == nil,
                   let callBack = callBack else { return }
             
-            guard let queryItems = URLComponents(string: callBack.absoluteString)?.queryItems,
-                  let accessCode = queryItems.first(where: { $0.name == "code" })?.value else { return }
-            
+            guard let accessCode = callBack.getValue(for: "code") else { return }
+           
             self?.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
                 guard isSuccess else { return }
-                self?.dismiss(animated: true, completion: nil)
+                self?.dismiss(animated: true)
             }
         }
         webAuthenticationSession?.presentationContextProvider = self

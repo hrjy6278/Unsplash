@@ -19,4 +19,17 @@ extension URL {
 
         return urlComponents?.url
     }
+    
+    func getValue(for key: String) -> String? {
+        guard let queryItems = URLComponents(string: absoluteString)?.queryItems else {
+            return nil
+        }
+        
+        for queryItem in queryItems {
+            if queryItem.name == key {
+               return queryItem.value
+            }
+        }
+        return nil
+    }
 }
