@@ -48,6 +48,11 @@ class SearchViewController: UIViewController {
         configureTableView()
         configureSearchBar()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadPhotos()
+    }
 }
 
 //MARK: - Method
@@ -110,13 +115,21 @@ extension SearchViewController: HierarchySetupable {
     private func judgeLikeResult(_ result: Result<PhotoLike, Error>) {
         switch result {
         case .success(let photoResult):
-            self.photos.firstIndex { $0.id == photoResult.photo.id }
+            photos.firstIndex { $0.id == photoResult.photo.id }
             .map { Int($0) }
-            .flatMap { self.photos[$0].isUserLike = photoResult.photo.isUserLike }
+            .flatMap { photos[$0].isUserLike = photoResult.photo.isUserLike }
             
         case .failure:
             print("에러발생")
         }
+    }
+    
+    private func reloadPhotos() {
+        guard photos.isEmpty == false,
+              TokenManager.shared.isTokenSaved else { return }
+        photos = []
+        page = 1
+        searchPhotos(for: page, query: query)
     }
 }
 
