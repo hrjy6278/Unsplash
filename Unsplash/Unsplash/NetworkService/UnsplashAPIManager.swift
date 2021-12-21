@@ -71,4 +71,16 @@ extension UnsplashAPIManager {
                 }
             }
     }
+    
+    func photoUnlike(id: String, completion: @escaping (Result<PhotoLike, Error>) -> Void) {
+        sessionManager.request(UnsplashRouter.photoUnlike(id: id))
+            .responseDecodable(of: PhotoLike.self) { responseJson in
+                switch responseJson.result {
+                case .success(let decodedPhoto):
+                    completion(.success(decodedPhoto))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
