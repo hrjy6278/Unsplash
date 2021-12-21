@@ -30,11 +30,11 @@ extension LoginViewController {
         let ASwebCallbackURLScheme = "jissCallback"
         
         webAuthenticationSession = ASWebAuthenticationSession(url: URL,
-                                                              callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBack, erorr in
+                                                              callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBackURL, erorr in
             guard erorr == nil,
-                  let callBack = callBack else { return }
+                  let callBackURL = callBackURL else { return }
             
-            guard let accessCode = callBack.getValue(for: "code") else { return }
+            guard let accessCode = callBackURL.getValue(for: "code") else { return }
            
             self?.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
                 guard isSuccess else { return }
