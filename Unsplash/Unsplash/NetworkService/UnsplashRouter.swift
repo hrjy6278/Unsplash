@@ -13,10 +13,11 @@ enum UnsplashRouter {
     case userAuthorize
     case fetchAccessToken(accessCode: String)
     case photoLike(id: String)
+    case photoUnlike(id: String)
     
     var baseURL: String {
         switch self {
-        case .searchPhotos, .photoLike:
+        case .searchPhotos, .photoLike, .photoUnlike:
             return "https://api.unsplash.com"
         case .fetchAccessToken, .userAuthorize:
             return "https://unsplash.com"
@@ -27,7 +28,7 @@ enum UnsplashRouter {
         switch self {
         case .searchPhotos:
             return "/search/photos"
-        case .photoLike (let id):
+        case .photoLike (let id), .photoUnlike(let id):
             return "/photos/\(id)/like"
         case .userAuthorize:
             return "/oauth/authorize"
@@ -43,6 +44,8 @@ enum UnsplashRouter {
             return .get
         case .fetchAccessToken, .photoLike:
             return .post
+        case .photoUnlike:
+            return .delete
         }
     }
     
@@ -68,7 +71,7 @@ enum UnsplashRouter {
                 "code": code,
                 "grant_type": UnsplashParameter.grandType
             ]
-        case .photoLike:
+        case .photoLike, .photoUnlike:
             return [:]
         }
     }
@@ -82,7 +85,7 @@ extension UnsplashRouter: URLRequestConvertible {
         request.method = method
         
         switch self {
-        case .searchPhotos, .userAuthorize, .photoLike:
+        case .searchPhotos, .userAuthorize, .photoLike, .photoUnlike:
             let url = request.url?.appendingQueryParameters(parameters)
             request.url = url
         case .fetchAccessToken:
