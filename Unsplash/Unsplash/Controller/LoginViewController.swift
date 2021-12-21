@@ -38,7 +38,7 @@ extension LoginViewController {
            
             self?.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
                 guard isSuccess else { return }
-                self?.dismiss(animated: true)
+                self?.navigationController?.popViewController(animated: true)
             }
         }
         webAuthenticationSession?.presentationContextProvider = self

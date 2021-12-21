@@ -8,21 +8,34 @@
 import UIKit
 
 class UnsplashTabbarController: UITabBarController {
-    
+    //MARK: Properties
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem()
-        button.title = "Login"
         button.target = self
         button.action = #selector(didTapLoginButton(_:))
         
         return button
     }()
     
+    private var searchViewController: SearchViewController = {
+        let searchViewController = SearchViewController()
+        let searchBarNomalImage = UIImage(systemName: "magnifyingglass.circle")
+        let searchBarTapedImage = UIImage(systemName: "magnifyingglass.circle.fill")
+        searchViewController.tabBarItem = UITabBarItem(title: "Search",
+                                                       image: searchBarNomalImage,
+                                                       selectedImage: searchBarTapedImage)
+        
+        return searchViewController
+    }()
+    
+    private var isTokenSaved: Bool {
+        TokenManager.shared.isTokenSaved ? true : false
+    }
+    
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,13 +47,6 @@ class UnsplashTabbarController: UITabBarController {
 //MARK: - Method
 extension UnsplashTabbarController {
     private func configure() {
-        let searchViewController = SearchViewController()
-        let searchImage = UIImage(systemName: "magnifyingglass.circle")
-        let searchTapImage = UIImage(systemName: "magnifyingglass.circle.fill")
-        searchViewController.tabBarItem = UITabBarItem(title: "Search",
-                                                       image: searchImage,
-                                                       selectedImage: searchTapImage)
-        
         viewControllers = [
             searchViewController
         ]
@@ -49,12 +55,16 @@ extension UnsplashTabbarController {
     private func configureNavigation() {
         navigationItem.title = "Unsplash"
         navigationItem.rightBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem?.title = isTokenSaved ? "로그아웃" : "로그인"
         navigationController?.navigationBar.backgroundColor = .gray
     }
     
     @objc func didTapLoginButton(_ sender: UIBarButtonItem) {
-        //MARK: Todo 로그인 Page 보여주기 새로운 흐름이니 모달로?
-        present(LoginViewController(), animated: true, completion: nil)
-        debugPrint(#function)
+        if isTokenSaved {
+            TokenManager.shared.clearAccessToken()
+            self.navigationItem.rightBarButtonItem?.title = "로그인"
+        } else {
+            navigationController?.pushViewController(LoginViewController(), animated: true)
+        }
     }
 }

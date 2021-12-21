@@ -17,6 +17,10 @@ final class TokenManager {
     private let userAccount = "accessToken"
     private let keyChaineStore = KeyChainStore(queryable: TokenQuery())
     
+    var isTokenSaved: Bool {
+        return keyChaineStore.isKeySaved(for: userAccount) ? true : false
+    }
+    
     static let shared = TokenManager()
     
     //MARK: init

@@ -90,6 +90,14 @@ extension KeyChainStore {
         SecItemDelete(query as CFDictionary)
     }
     
+    func isKeySaved(for userAccount: String) -> Bool {
+        if let _ = try? getValue(for: userAccount) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     private func error(status: OSStatus) -> KeyChainError {
         let errorMessage = SecCopyErrorMessageString(status, nil) as String? ?? ""
         
