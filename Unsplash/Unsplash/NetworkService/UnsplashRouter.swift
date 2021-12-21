@@ -26,8 +26,10 @@ enum UnsplashRouter {
         switch self {
         case .searchPhotos:
             return "/search/photos"
-        case .fetchAccessToken, .userAuthorize:
+        case .userAuthorize:
             return "/oauth/authorize"
+        case .fetchAccessToken:
+            return "/oauth/token"
         }
     }
     
@@ -76,8 +78,8 @@ extension UnsplashRouter: URLRequestConvertible {
         
         switch method {
         case .get:
-            request = try URLEncodedFormParameterEncoder().encode(parameters,
-                                                                  into: request)
+            let url = request.url?.appendingQueryParameters(parameters)
+            request.url = url
         case .post:
             request = try JSONParameterEncoder().encode(parameters,
                                                         into: request)
