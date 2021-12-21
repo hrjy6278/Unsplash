@@ -13,7 +13,11 @@ final class UnsplashInterceptor: RequestInterceptor {
         var request = urlRequest
         
         if let token = try? TokenManager.shared.fetchAcessToken() {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer \(token)",
+                             forHTTPHeaderField: "Authorization")
+        } else {
+            request.setValue("Client-ID \(UnsplashParameter.clientID)",
+                             forHTTPHeaderField: "Authorization")
         }
         
         completion(.success(request))

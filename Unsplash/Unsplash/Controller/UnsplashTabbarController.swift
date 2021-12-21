@@ -61,8 +61,9 @@ extension UnsplashTabbarController {
     
     @objc func didTapLoginButton(_ sender: UIBarButtonItem) {
         if isTokenSaved {
+            //MARK: ToDo 정상적으로 로그아웃됐다고 얼러트를 띄워주기
             TokenManager.shared.clearAccessToken()
-            self.navigationItem.rightBarButtonItem?.title = "로그인"
+            navigationItem.rightBarButtonItem?.title = "로그인"
         } else {
             navigationController?.pushViewController(LoginViewController(), animated: true)
         }

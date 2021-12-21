@@ -26,12 +26,14 @@ struct Photo: Decodable {
     let description: String?
     let user: User?
     let likes: Int
+    let isUserLike: Bool
     let urls: Urls
     let links: PhotoLink
     
     enum CodingKeys: String, CodingKey {
         case id, description, urls, links, user, likes
         case createdAt = "created_at"
+        case isUserLike = "liked_by_user"
     }
 }
 

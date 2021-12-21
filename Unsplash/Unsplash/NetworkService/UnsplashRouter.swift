@@ -46,7 +46,6 @@ enum UnsplashRouter {
         switch self {
         case .searchPhotos(let query, let page):
             return [
-                "client_id": UnsplashParameter.clientID,
                 "page": String(page),
                 "query": query
             ]
