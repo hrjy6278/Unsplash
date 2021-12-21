@@ -80,6 +80,7 @@ extension SearchViewController: HierarchySetupable {
         searchBar.delegate = self
     }
     
+    //MARK: Network Service
     private func searchPhotos(for page: Int, query: String) {
         networkService.searchPhotos(type: SearchPhoto.self,
                                     query: query,
@@ -92,6 +93,22 @@ extension SearchViewController: HierarchySetupable {
             case .failure(let error):
                 //MARK: Todo: 에러메시지 출력
                 print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func photoLike(photoId: String) {
+        networkService.photoLike(id: photoId) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let photoResult):
+                self.photos.firstIndex { $0.id == photoResult.photo.id }
+                .map { Int($0) }
+                .flatMap { self.photos[$0].isUserLike = photoResult.photo.isUserLike }
+                
+            case .failure:
+                print("좋아요를 실패했습니다..")
             }
         }
     }
@@ -111,6 +128,7 @@ extension SearchViewController: UITableViewDataSource {
         
         let photo = photos[indexPath.row]
         
+        cell.delegate = self
         cell.configure(id: photo.id,
                        title: photo.user?.username,
                        likeCount: String(photo.likes),
@@ -146,5 +164,12 @@ extension SearchViewController: UISearchBarDelegate {
         self.photos = []
         searchPhotos(for: self.page, query: query)
         searchBar.resignFirstResponder()
+    }
+}
+
+extension SearchViewController: SearchTableViewCellDelegate {
+    func didTapedLikeButton(_ id: String) {
+        guard TokenManager.shared.isTokenSaved else { return }
+        photoLike(photoId: id)
     }
 }
