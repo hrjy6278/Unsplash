@@ -8,9 +8,18 @@
 import UIKit
 import Kingfisher
 
+protocol SearchTableViewCellDelegate: AnyObject {
+    func didTapedLikeButton(_ id: String)
+}
+
 class SearchTableViewCell: UITableViewCell {
     
     //MARK: - Properties
+    
+    weak var delegate: SearchTableViewCellDelegate?
+    
+    private var imageId: String = ""
+    
     private var thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -36,10 +45,11 @@ class SearchTableViewCell: UITableViewCell {
         return label
     }()
     
-    private var likeButton: UIButton = {
+    private lazy var likeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.addTarget(self, action: #selector(didTapedLikeButton), for: .touchUpInside)
         
         return button
     }()
@@ -74,7 +84,7 @@ extension SearchTableViewCell: HierarchySetupable {
         contentStackView.addArrangedSubview(likeButton)
         
         addSubview(thumbnailImageView)
-        addSubview(contentStackView)
+        contentView.addSubview(contentStackView)
     }
     
     func setupLayout() {
@@ -94,18 +104,37 @@ extension SearchTableViewCell: HierarchySetupable {
         ])
     }
     
-    func configure(title: String?, likeCount: String?, imageUrl: URL?) {
+    func configure(id: String, title: String?, likeCount: String?, isUserLike: Bool, imageUrl: URL?) {
+        imageId = id
         titleLabel.text = title
         likeCountLabel.text = likeCount
         
+        configureUserLikeButtonView(isUserLike: isUserLike)
+        configureThumbnailImageView(imageUrl)
+    }
+    
+    private func configureThumbnailImageView(_ imageUrl: URL?) {
         thumbnailImageView.kf.indicatorType = .activity
         thumbnailImageView.kf.setImage(with: imageUrl,
                                        options: [.keepCurrentImageWhileLoading])
+    }
+    
+    private func configureUserLikeButtonView(isUserLike: Bool) {
+        var image: UIImage?
+        
+        isUserLike ? (image = UIImage(systemName: "heart.fill")) : (image = UIImage(systemName: "heart"))
+        
+        likeButton.setImage(image, for: .normal)
+    }
+    
+    @objc func didTapedLikeButton() {
+        delegate?.didTapedLikeButton(imageId)
     }
     
     override func prepareForReuse() {
         self.thumbnailImageView.image = nil
         self.titleLabel.text = nil
         self.likeCountLabel.text = nil
+        self.likeButton.imageView?.image = nil
     }
 }

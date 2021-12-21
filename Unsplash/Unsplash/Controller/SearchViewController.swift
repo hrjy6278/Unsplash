@@ -111,8 +111,10 @@ extension SearchViewController: UITableViewDataSource {
         
         let photo = photos[indexPath.row]
         
-        cell.configure(title: photo.user?.username,
+        cell.configure(id: photo.id,
+                       title: photo.user?.username,
                        likeCount: String(photo.likes),
+                       isUserLike: photo.isUserLike,
                        imageUrl: photo.urls.regularURL)
         
         return cell
