@@ -157,6 +157,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 }
 
+//MARK: - Image List DataSource Delegate
 extension SearchViewController: ImageListDataSourceDelegate {
     func morePhotos() {
         searchPhotos()

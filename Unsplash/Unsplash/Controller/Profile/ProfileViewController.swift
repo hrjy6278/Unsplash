@@ -16,6 +16,5 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
     }
 }
