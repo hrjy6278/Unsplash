@@ -13,6 +13,8 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     var selected = "person.fill"
     var barTitle = "Profile"
     
+    private let tableViewdataSource = ImageListDataSource()
+    
     private var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +23,7 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
         tableView.register(ImageListTableViewCell.self,
                            forCellReuseIdentifier: ImageListTableViewCell.cellID)
         tableView.sectionHeaderHeight = 88
+        
         return tableView
     }()
     
@@ -29,6 +32,7 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
         super.viewDidLoad()
         view.backgroundColor = .white
         setupView()
+        configureTableView()
     }
 }
 
@@ -45,5 +49,13 @@ extension ProfileViewController: HierarchySetupable {
             tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
+    }
+}
+
+//MARK: - Configure
+extension ProfileViewController {
+    func configureTableView() {
+        tableView.delegate = tableViewdataSource
+        tableView.dataSource = tableViewdataSource
     }
 }
