@@ -9,5 +9,5 @@ import Foundation
 
 struct PhotoLike: Decodable {
     let photo: Photo
-    let user: User
+    let user: Profile
 }

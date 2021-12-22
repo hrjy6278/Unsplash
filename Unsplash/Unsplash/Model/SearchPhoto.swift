@@ -24,21 +24,22 @@ struct Photo: Decodable {
     let id: String
     let createdAt: String
     let description: String?
-    let user: User?
+    let profile: Profile?
     var likes: Int
     var isUserLike: Bool
     let urls: Urls
-    let links: PhotoLink
+    let links: Link
     
     enum CodingKeys: String, CodingKey {
-        case id, description, urls, links, user, likes
+        case id, description, urls, links, likes
+        case profile = "user"
         case createdAt = "created_at"
         case isUserLike = "liked_by_user"
     }
 }
 
-struct PhotoLink: Decodable {
-    let linksSelf, html, download : String
+struct Link: Decodable {
+    let linksSelf, html, download : String?
     
     enum CodingKeys: String, CodingKey {
         case html, download
@@ -52,13 +53,4 @@ struct Urls: Decodable {
     var regularURL: URL? {
         URL(string: regular)
     }
-}
-
-struct ProfileImage: Decodable {
-    let small, medium, large: String
-}
-
-struct User: Decodable {
-    let id: String
-    let username: String?
 }
