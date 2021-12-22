@@ -18,51 +18,22 @@ class SearchTableViewCell: UITableViewCell {
     
     weak var delegate: SearchTableViewCellDelegate?
     
-    private var imageId: String = ""
-    
-    private var thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        
-        return imageView
-    }()
-    
-    private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title3)
-        
-        return label
-    }()
-    
-    private var likeCountLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .callout)
-        
-        return label
-    }()
+    private var photoId: String = ""
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "heart"), for: .normal)
+        button.backgroundColor = .clear
         button.addTarget(self, action: #selector(didTapedLikeButton), for: .touchUpInside)
         
         return button
     }()
     
-    private var contentStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .leading
-        stackView.spacing = 8
+    private var unsplashImagesView: UnsplashImagesView = {
+        let unsplashImagesView = UnsplashImagesView()
+        unsplashImagesView.translatesAutoresizingMaskIntoConstraints = false
         
-        return stackView
+        return unsplashImagesView
     }()
     
     //MARK: - init
@@ -79,62 +50,39 @@ class SearchTableViewCell: UITableViewCell {
 //MARK: - Method
 extension SearchTableViewCell: HierarchySetupable {
     func setupViewHierarchy() {
-        contentStackView.addArrangedSubview(titleLabel)
-        contentStackView.addArrangedSubview(likeCountLabel)
-        contentStackView.addArrangedSubview(likeButton)
-        
-        addSubview(thumbnailImageView)
-        contentView.addSubview(contentStackView)
+        addSubview(unsplashImagesView)
+        contentView.addSubview(likeButton)
     }
     
     func setupLayout() {
-        let stackViewTopConstant: CGFloat = 16
-        let stackViewLeadingConstant: CGFloat = 16
+        let likeButtonImage = unsplashImagesView.likeImageView
         
         NSLayoutConstraint.activate([
-            thumbnailImageView.topAnchor.constraint(equalTo: topAnchor),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            thumbnailImageView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            unsplashImagesView.topAnchor.constraint(equalTo: topAnchor),
+            unsplashImagesView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            unsplashImagesView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            unsplashImagesView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            contentStackView.topAnchor.constraint(equalTo: topAnchor,
-                                                  constant: stackViewTopConstant),
-            contentStackView.leadingAnchor.constraint(equalTo: leadingAnchor,
-                                                      constant: stackViewLeadingConstant),
+            likeButton.topAnchor.constraint(equalTo: likeButtonImage.topAnchor),
+            likeButton.leadingAnchor.constraint(equalTo: likeButtonImage.leadingAnchor),
+            likeButton.trailingAnchor.constraint(equalTo: likeButtonImage.trailingAnchor),
+            likeButton.bottomAnchor.constraint(equalTo: likeButtonImage.bottomAnchor)
         ])
     }
     
-    func configure(id: String, title: String?, likeCount: String?, isUserLike: Bool, imageUrl: URL?) {
-        imageId = id
-        titleLabel.text = title
-        likeCountLabel.text = likeCount
-        
-        configureUserLikeButtonView(isUserLike: isUserLike)
-        configureThumbnailImageView(imageUrl)
-    }
-    
-    private func configureThumbnailImageView(_ imageUrl: URL?) {
-        thumbnailImageView.kf.indicatorType = .activity
-        thumbnailImageView.kf.setImage(with: imageUrl,
-                                       options: [.keepCurrentImageWhileLoading])
-    }
-    
-    private func configureUserLikeButtonView(isUserLike: Bool) {
-        var image: UIImage?
-        
-        isUserLike ? (image = UIImage(systemName: "heart.fill")) : (image = UIImage(systemName: "heart"))
-        
-        likeButton.setImage(image, for: .normal)
+    func configure(id: String, photographerName: String?, likeCount: String?, isUserLike: Bool, imageUrl: URL?) {
+        photoId = id
+        unsplashImagesView.configure(photographer: photographerName,
+                                     likeCount: likeCount,
+                                     isUserLike: isUserLike,
+                                     imageUrl: imageUrl)
     }
     
     @objc func didTapedLikeButton() {
-        delegate?.didTapedLikeButton(imageId)
+        delegate?.didTapedLikeButton(photoId)
     }
     
     override func prepareForReuse() {
-        self.thumbnailImageView.image = nil
-        self.titleLabel.text = nil
-        self.likeCountLabel.text = nil
-        self.likeButton.imageView?.image = nil
+        unsplashImagesView.clearItems()
     }
 }

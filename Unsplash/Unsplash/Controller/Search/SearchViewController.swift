@@ -149,7 +149,7 @@ extension SearchViewController: UITableViewDataSource {
         
         cell.delegate = self
         cell.configure(id: photo.id,
-                       title: photo.user?.username,
+                       photographerName: photo.user?.username,
                        likeCount: String(photo.likes),
                        isUserLike: photo.isUserLike,
                        imageUrl: photo.urls.regularURL)
