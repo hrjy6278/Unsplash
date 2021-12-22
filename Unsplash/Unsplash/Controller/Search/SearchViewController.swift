@@ -117,7 +117,10 @@ extension SearchViewController: HierarchySetupable {
         case .success(let photoResult):
             photos.firstIndex { $0.id == photoResult.photo.id }
             .map { Int($0) }
-            .flatMap { photos[$0].isUserLike = photoResult.photo.isUserLike }
+            .flatMap {
+                photos[$0].isUserLike = photoResult.photo.isUserLike
+                photos[$0].likes = photoResult.photo.likes
+            }
             
         case .failure:
             print("에러발생")
