@@ -13,8 +13,11 @@ class SearchViewController: UIViewController, TabBarImageInfo {
     var selected = "magnifyingglass.circle.fill"
     var barTitle = "Search"
     
+    private let networkService = UnsplashAPIManager()
     private let imageListViewDataSource = ImageListDataSource()
-    
+    private var page: Int = 1
+    private var query: String = ""
+    private var photos: [Photo] = []
     
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -46,7 +49,7 @@ class SearchViewController: UIViewController, TabBarImageInfo {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        imageListViewDataSource.reloadPhotos()
+        reloadPhotos()
     }
 }
 
@@ -85,20 +88,82 @@ extension SearchViewController: HierarchySetupable {
     }
 }
 
+//MARK: - NetworkService
+extension SearchViewController {
+    func reloadPhotos() {
+        guard photos.isEmpty == false,
+              TokenManager.shared.isTokenSaved else { return }
+        photos = []
+        page = 1
+        searchPhotos(query: query)
+    }
+    
+    func searchPhotos(query: String) {
+        networkService.searchPhotos(type: SearchPhoto.self,
+                                    query: query,
+                                    page: page) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let photoResult):
+                photoResult.photos.forEach { self.photos.append($0) }
+                self.imageListViewDataSource.photos = self.photos
+                self.tableView.reloadData()
+                self.page += 1
+                
+            case .failure(let error):
+                //MARK: Todo: 에러메시지 출력
+                debugPrint("사진가져오기 실패", error.localizedDescription)
+            }
+        }
+    }
+    
+    private func fetchLikePhoto(photoId: String) {
+        guard let index = photos.firstIndex(where: { $0.id == photoId }) else { return }
+        
+        if photos[index].isUserLike {
+            networkService.photoUnlike(id: photoId, completion: judgeLikeResult(_:))
+        } else {
+            networkService.photoLike(id: photoId, completion: judgeLikeResult(_:))
+        }
+    }
+    
+    private func judgeLikeResult(_ result: Result<PhotoLike, Error>) {
+        switch result {
+        case .success(let photoResult):
+            photos.firstIndex { $0.id == photoResult.photo.id }
+            .map { Int($0) }
+            .flatMap {
+                photos[$0].isUserLike = photoResult.photo.isUserLike
+                photos[$0].likes = photoResult.photo.likes
+            }
+            self.imageListViewDataSource.photos = self.photos
+            self.tableView.reloadData()
+            
+        case .failure:
+            print("좋아요를 실패하였습니다.")
+        }
+    }
+}
+
+
 //MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-      
-        imageListViewDataSource.searchPhotos(query: query)
+        self.query = query
+        searchPhotos(query: query)
         searchBar.resignFirstResponder()
     }
 }
 
 extension SearchViewController: ImageListDataSourceDelegate {
-    func didFinishedFetchImage(isSuceesed: Bool) {
-        if isSuceesed {
-            self.tableView.reloadData()
-        }
+    func morePhotos() {
+        searchPhotos(query: self.query)
+    }
+    
+    func didTapedLikeButton(photoId: String) {
+        guard TokenManager.shared.isTokenSaved else { return }
+        fetchLikePhoto(photoId: photoId)
     }
 }
