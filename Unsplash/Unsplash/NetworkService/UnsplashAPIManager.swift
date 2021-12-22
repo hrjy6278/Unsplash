@@ -50,7 +50,7 @@ extension UnsplashAPIManager {
     func fetchAccessToken(accessCode: String, completion: @escaping (Bool) -> Void) {
         sessionManager.request(UnsplashRouter.fetchAccessToken(accessCode: accessCode)).responseDecodable(of: UnsplashAccessToken.self) { reponseJson in
             guard let token = reponseJson.value else { return completion(false) }
-
+            
             do {
                 try TokenManager.shared.saveAccessToken(unsplashToken: token)
                 completion(true)
@@ -79,6 +79,19 @@ extension UnsplashAPIManager {
                 case .success(let decodedPhoto):
                     completion(.success(decodedPhoto))
                 case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    func fetchUserProfile(completion: @escaping (Result<Profile, Error>) -> Void) {
+        sessionManager.request(UnsplashRouter.myProfile)
+            .responseDecodable(of: Profile.self) { responseJson in
+                switch responseJson.result {
+                case .success(let profile):
+                    completion(.success(profile))
+                case .failure(let error):
+                    debugPrint(error)
                     completion(.failure(error))
                 }
             }
