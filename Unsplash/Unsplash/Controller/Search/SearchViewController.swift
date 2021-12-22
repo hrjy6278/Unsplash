@@ -7,10 +7,14 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-    
+class SearchViewController: UIViewController, TabBarImageInfo {
     //MARK: - Properties
+    var nomal = "magnifyingglass.circle"
+    var selected = "magnifyingglass.circle.fill"
+    var barTitle = "Search"
+    
     private let imageListViewDataSource = ImageListDataSource()
+    
     
     private let searchBar: UISearchBar = {
         let search = UISearchBar()

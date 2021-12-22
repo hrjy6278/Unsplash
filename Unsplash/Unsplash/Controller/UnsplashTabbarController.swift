@@ -17,16 +17,8 @@ class UnsplashTabbarController: UITabBarController {
         return button
     }()
     
-    private var searchViewController: SearchViewController = {
-        let searchViewController = SearchViewController()
-        let searchBarNomalImage = UIImage(systemName: "magnifyingglass.circle")
-        let searchBarTapedImage = UIImage(systemName: "magnifyingglass.circle.fill")
-        searchViewController.tabBarItem = UITabBarItem(title: "Search",
-                                                       image: searchBarNomalImage,
-                                                       selectedImage: searchBarTapedImage)
-        
-        return searchViewController
-    }()
+    private var searchViewController = SearchViewController()
+    private var profileViewController = ProfileViewController()
     
     private var isTokenSaved: Bool {
         TokenManager.shared.isTokenSaved ? true : false
@@ -35,7 +27,9 @@ class UnsplashTabbarController: UITabBarController {
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configure()
+        setupTabBarItem(for: searchViewController)
+        setupTabBarItem(for: profileViewController)
+        configureTabBarController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,10 +40,24 @@ class UnsplashTabbarController: UITabBarController {
 
 //MARK: - Method
 extension UnsplashTabbarController {
-    private func configure() {
+    private func configureTabBarController() {
         viewControllers = [
-            searchViewController
+            searchViewController,
+            profileViewController
         ]
+    }
+    
+    private func setupTabBarItem(for controller: UIViewController) {
+        guard let info = controller as? TabBarImageInfo else { return }
+        
+        let tabBarNomalImage = UIImage(systemName: info.nomal)
+        let tabBarSelectedImage = UIImage(systemName: info.selected)
+        
+        let tabBarItem = UITabBarItem(title: info.barTitle,
+                                      image: tabBarNomalImage,
+                                      selectedImage: tabBarSelectedImage)
+       
+        controller.tabBarItem = tabBarItem
     }
     
     private func configureNavigation() {
