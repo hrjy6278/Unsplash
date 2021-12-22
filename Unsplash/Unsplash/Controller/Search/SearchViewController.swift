@@ -10,17 +10,7 @@ import UIKit
 class SearchViewController: UIViewController {
     
     //MARK: - Properties
-    private var photos = [Photo]() {
-        didSet {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    private let networkService = UnsplashAPIManager()
-    private var page: Int = 1
-    private var query: String = ""
+    private let imageListViewDataSource = ImageListDataSource()
     
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
@@ -47,11 +37,12 @@ class SearchViewController: UIViewController {
         setupView()
         configureTableView()
         configureSearchBar()
+        configureImageListDataSource()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadPhotos()
+        imageListViewDataSource.reloadPhotos()
     }
 }
 
@@ -76,8 +67,8 @@ extension SearchViewController: HierarchySetupable {
     }
     
     private func configureTableView() {
-        tableView.dataSource = self
-        tableView.delegate = self
+        tableView.dataSource = imageListViewDataSource
+        tableView.delegate = imageListViewDataSource
         tableView.rowHeight = view.frame.size.height / 4
     }
     
@@ -85,95 +76,8 @@ extension SearchViewController: HierarchySetupable {
         searchBar.delegate = self
     }
     
-    //MARK: Network Service
-    private func searchPhotos(for page: Int, query: String) {
-        networkService.searchPhotos(type: SearchPhoto.self,
-                                    query: query,
-                                    page: page) { [weak self] result in
-            self?.page += 1
-            
-            switch result {
-            case .success(let photoResult):
-                photoResult.photos.forEach { self?.photos.append($0) }
-            case .failure(let error):
-                //MARK: Todo: 에러메시지 출력
-                print(error.localizedDescription)
-            }
-        }
-    }
-    
-    private func photoLike(photoId: String) {
-        guard let index = photos.firstIndex(where: { $0.id == photoId }) else { return }
-        
-        if photos[index].isUserLike {
-            networkService.photoUnlike(id: photoId, completion: judgeLikeResult(_:))
-        } else {
-            networkService.photoLike(id: photoId, completion: judgeLikeResult(_:))
-        }
-    }
-    
-    private func judgeLikeResult(_ result: Result<PhotoLike, Error>) {
-        switch result {
-        case .success(let photoResult):
-            photos.firstIndex { $0.id == photoResult.photo.id }
-            .map { Int($0) }
-            .flatMap {
-                photos[$0].isUserLike = photoResult.photo.isUserLike
-                photos[$0].likes = photoResult.photo.likes
-            }
-            
-        case .failure:
-            print("에러발생")
-        }
-    }
-    
-    private func reloadPhotos() {
-        guard photos.isEmpty == false,
-              TokenManager.shared.isTokenSaved else { return }
-        photos = []
-        page = 1
-        searchPhotos(for: page, query: query)
-    }
-}
-
-//MARK: - UITableViewDataSource
-extension SearchViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return photos.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellID,
-                                                       for: indexPath) as? SearchTableViewCell else {
-            return UITableViewCell()
-        }
-        
-        let photo = photos[indexPath.row]
-        
-        cell.delegate = self
-        cell.configure(id: photo.id,
-                       photographerName: photo.user?.username,
-                       likeCount: String(photo.likes),
-                       isUserLike: photo.isUserLike,
-                       imageUrl: photo.urls.regularURL)
-        
-        return cell
-    }
-}
-
-//MARK: - UITableViewDelegate
-extension SearchViewController: UITableViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let contentHeight = scrollView.contentSize.height
-        let yOffset = scrollView.contentOffset.y
-        let heightRemainBottomHeight = contentHeight - yOffset
-        
-        let frameHeight = scrollView.frame.size.height
-        
-        if heightRemainBottomHeight < frameHeight && photos.isEmpty == false  {
-            searchPhotos(for: self.page, query: self.query)
-        }
+    private func configureImageListDataSource() {
+        imageListViewDataSource.delegate = self
     }
 }
 
@@ -181,18 +85,16 @@ extension SearchViewController: UITableViewDelegate {
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
-        self.query = query
-        self.page = 1
-        self.photos = []
-        searchPhotos(for: self.page, query: query)
+      
+        imageListViewDataSource.searchPhotos(query: query)
         searchBar.resignFirstResponder()
     }
 }
 
-//MARK: - Search TableView Cell Delegate(Like Button Tap)
-extension SearchViewController: SearchTableViewCellDelegate {
-    func didTapedLikeButton(_ id: String) {
-        guard TokenManager.shared.isTokenSaved else { return }
-        photoLike(photoId: id)
+extension SearchViewController: ImageListDataSourceDelegate {
+    func didFinishedFetchImage(isSuceesed: Bool) {
+        if isSuceesed {
+            self.tableView.reloadData()
+        }
     }
 }

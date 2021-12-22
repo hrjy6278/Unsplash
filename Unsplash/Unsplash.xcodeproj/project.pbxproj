@@ -25,6 +25,7 @@
 		74A225C5277188EA002DB300 /* Extension + URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C4277188EA002DB300 /* Extension + URL.swift */; };
 		74A225C72771FF78002DB300 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C62771FF78002DB300 /* PhotoLike.swift */; };
 		74A225CC2772C5C1002DB300 /* UnsplashImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225CB2772C5C1002DB300 /* UnsplashImagesView.swift */; };
+		74A225D42772EC1B002DB300 /* ImageListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225D32772EC1B002DB300 /* ImageListDataSource.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -74,6 +75,7 @@
 		74A225C4277188EA002DB300 /* Extension + URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + URL.swift"; sourceTree = "<group>"; };
 		74A225C62771FF78002DB300 /* PhotoLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLike.swift; sourceTree = "<group>"; };
 		74A225CB2772C5C1002DB300 /* UnsplashImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImagesView.swift; sourceTree = "<group>"; };
+		74A225D32772EC1B002DB300 /* ImageListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageListDataSource.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -197,6 +199,14 @@
 			path = Login;
 			sourceTree = "<group>";
 		};
+		74A225D22772EC0C002DB300 /* ImageListDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				74A225D32772EC1B002DB300 /* ImageListDataSource.swift */,
+			);
+			path = ImageListDataSource;
+			sourceTree = "<group>";
+		};
 		74BCE1AE276C703B0093B1E6 = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +291,7 @@
 		74BCE1F7276C83A60093B1E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				74A225D22772EC0C002DB300 /* ImageListDataSource */,
 				74A225CA27722A89002DB300 /* Login */,
 				74A225C927722A74002DB300 /* Profile */,
 				74A225C827722A6A002DB300 /* Search */,
@@ -451,6 +462,7 @@
 				74A225BB2770B93A002DB300 /* TokenManager.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
 				74A225BF2770BF93002DB300 /* TokenQuery.swift in Sources */,
+				74A225D42772EC1B002DB300 /* ImageListDataSource.swift in Sources */,
 				74A225A6276ED23D002DB300 /* HierarchySetupable.swift in Sources */,
 				74A225A8277048CE002DB300 /* UnsplashRouter.swift in Sources */,
 				74A225AA277053DA002DB300 /* UnsplashParameter.swift in Sources */,
