@@ -31,8 +31,8 @@ class SearchViewController: UIViewController, TabBarImageInfo {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(SearchTableViewCell.self,
-                           forCellReuseIdentifier: SearchTableViewCell.cellID)
+        tableView.register(ImageListTableViewCell.self,
+                           forCellReuseIdentifier: ImageListTableViewCell.cellID)
         
         return tableView
     }()

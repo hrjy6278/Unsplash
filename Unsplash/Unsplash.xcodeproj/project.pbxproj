@@ -10,7 +10,7 @@
 		74A22596276CD625002DB300 /* UnsplashAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22595276CD625002DB300 /* UnsplashAPIManager.swift */; };
 		74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A22597276CDAF0002DB300 /* PasingManager.swift */; };
 		74A2259C276CE0CB002DB300 /* SearchPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259B276CE0CB002DB300 /* SearchPhoto.swift */; };
-		74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */; };
+		74A2259E276ECB7F002DB300 /* ImageListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259D276ECB7F002DB300 /* ImageListTableViewCell.swift */; };
 		74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */; };
 		74A225A6276ED23D002DB300 /* HierarchySetupable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A5276ED23D002DB300 /* HierarchySetupable.swift */; };
 		74A225A8277048CE002DB300 /* UnsplashRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225A7277048CE002DB300 /* UnsplashRouter.swift */; };
@@ -62,7 +62,7 @@
 		74A22595276CD625002DB300 /* UnsplashAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashAPIManager.swift; sourceTree = "<group>"; };
 		74A22597276CDAF0002DB300 /* PasingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasingManager.swift; sourceTree = "<group>"; };
 		74A2259B276CE0CB002DB300 /* SearchPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPhoto.swift; sourceTree = "<group>"; };
-		74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchTableViewCell.swift; path = Unsplash/Controller/SearchTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		74A2259D276ECB7F002DB300 /* ImageListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageListTableViewCell.swift; path = Unsplash/Controller/ImageListTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITableView.swift"; sourceTree = "<group>"; };
 		74A225A5276ED23D002DB300 /* HierarchySetupable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HierarchySetupable.swift; sourceTree = "<group>"; };
 		74A225A7277048CE002DB300 /* UnsplashRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashRouter.swift; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				74A225CB2772C5C1002DB300 /* UnsplashImagesView.swift */,
-				74A2259D276ECB7F002DB300 /* SearchTableViewCell.swift */,
+				74A2259D276ECB7F002DB300 /* ImageListTableViewCell.swift */,
 				74BCE1C5276C703E0093B1E6 /* LaunchScreen.storyboard */,
 			);
 			path = View;
@@ -453,7 +453,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				74A225CC2772C5C1002DB300 /* UnsplashImagesView.swift in Sources */,
-				74A2259E276ECB7F002DB300 /* SearchTableViewCell.swift in Sources */,
+				74A2259E276ECB7F002DB300 /* ImageListTableViewCell.swift in Sources */,
 				74A22596276CD625002DB300 /* UnsplashAPIManager.swift in Sources */,
 				74A225B82770A781002DB300 /* UnsplashAccessToken.swift in Sources */,
 				74A225C5277188EA002DB300 /* Extension + URL.swift in Sources */,

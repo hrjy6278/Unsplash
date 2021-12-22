@@ -27,8 +27,8 @@ extension ImageListDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.cellID,
-                                                       for: indexPath) as? SearchTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ImageListTableViewCell.cellID,
+                                                       for: indexPath) as? ImageListTableViewCell else {
             return UITableViewCell()
         }
         
@@ -46,7 +46,7 @@ extension ImageListDataSource: UITableViewDataSource {
 }
 
 //MARK: - Search TableView Cell Delegate(Like Button Tap)
-extension ImageListDataSource: SearchTableViewCellDelegate {
+extension ImageListDataSource: ImageListTableViewCellDelegate {
     func didTapedLikeButton(_ id: String) {
         delegate?.didTapedLikeButton(photoId: id)
     }

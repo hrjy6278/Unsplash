@@ -8,15 +8,15 @@
 import UIKit
 import Kingfisher
 
-protocol SearchTableViewCellDelegate: AnyObject {
+protocol ImageListTableViewCellDelegate: AnyObject {
     func didTapedLikeButton(_ id: String)
 }
 
-class SearchTableViewCell: UITableViewCell {
+class ImageListTableViewCell: UITableViewCell {
     
     //MARK: - Properties
     
-    weak var delegate: SearchTableViewCellDelegate?
+    weak var delegate: ImageListTableViewCellDelegate?
     
     private var photoId: String = ""
     
@@ -48,7 +48,7 @@ class SearchTableViewCell: UITableViewCell {
 }
 
 //MARK: - Method
-extension SearchTableViewCell: HierarchySetupable {
+extension ImageListTableViewCell: HierarchySetupable {
     func setupViewHierarchy() {
         addSubview(unsplashImagesView)
         contentView.addSubview(likeButton)
