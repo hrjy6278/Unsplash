@@ -172,6 +172,29 @@
 			path = OAuth;
 			sourceTree = "<group>";
 		};
+		74A225C827722A6A002DB300 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		74A225C927722A74002DB300 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		74A225CA27722A89002DB300 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				74A225C22771750B002DB300 /* LoginViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		74BCE1AE276C703B0093B1E6 = {
 			isa = PBXGroup;
 			children = (
@@ -255,9 +278,10 @@
 		74BCE1F7276C83A60093B1E6 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				74A225CA27722A89002DB300 /* Login */,
+				74A225C927722A74002DB300 /* Profile */,
+				74A225C827722A6A002DB300 /* Search */,
 				74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */,
-				74A225C22771750B002DB300 /* LoginViewController.swift */,
-				74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
