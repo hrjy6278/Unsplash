@@ -55,6 +55,7 @@ class UnsplashImagesView: UIView {
         return stackView
     }()
     
+    //MARK: View Life Cycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -98,8 +99,15 @@ extension UnsplashImagesView: HierarchySetupable {
         photographerLabel.text = photographer
         likeCountLabel.text = likeCount
         
-        configureUserLikeButtonView(isUserLike: isUserLike)
+        configureLikeImageView(isUserLike: isUserLike)
         configureThumbnailImageView(imageUrl)
+    }
+    
+    func clearItems() {
+        thumbnailImageView.image = nil
+        photographerLabel.text = nil
+        likeCountLabel.text = nil
+        likeImageView.image = nil
     }
     
     private func configureThumbnailImageView(_ imageUrl: URL?) {
@@ -108,7 +116,7 @@ extension UnsplashImagesView: HierarchySetupable {
                                        options: [.keepCurrentImageWhileLoading])
     }
     
-    private func configureUserLikeButtonView(isUserLike: Bool) {
+    private func configureLikeImageView(isUserLike: Bool) {
         var image: UIImage?
         
         isUserLike ? (image = UIImage(systemName: "heart.fill")) : (image = UIImage(systemName: "heart"))
