@@ -95,10 +95,10 @@ extension SearchViewController {
               TokenManager.shared.isTokenSaved else { return }
         photos = []
         page = 1
-        searchPhotos(query: query)
+        searchPhotos()
     }
     
-    func searchPhotos(query: String) {
+    func searchPhotos() {
         networkService.searchPhotos(type: SearchPhoto.self,
                                     query: query,
                                     page: page) { [weak self] result in
@@ -152,14 +152,14 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let query = searchBar.text else { return }
         self.query = query
-        searchPhotos(query: query)
+        searchPhotos()
         searchBar.resignFirstResponder()
     }
 }
 
 extension SearchViewController: ImageListDataSourceDelegate {
     func morePhotos() {
-        searchPhotos(query: self.query)
+        searchPhotos()
     }
     
     func didTapedLikeButton(photoId: String) {
