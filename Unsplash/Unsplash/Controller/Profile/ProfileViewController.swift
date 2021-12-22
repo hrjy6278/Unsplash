@@ -14,6 +14,7 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     var barTitle = "Profile"
     
     private let tableViewdataSource = ImageListDataSource()
+    private let tableViewHeaderView = ProfileHeaderView()
     
     private var tableView: UITableView = {
         let tableView = UITableView()
@@ -22,7 +23,6 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
                            forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifier)
         tableView.register(ImageListTableViewCell.self,
                            forCellReuseIdentifier: ImageListTableViewCell.cellID)
-        tableView.sectionHeaderHeight = 88
         
         return tableView
     }()
@@ -52,9 +52,13 @@ extension ProfileViewController: HierarchySetupable {
     }
 }
 
-//MARK: - Configure
+//MARK: - Configure Views
 extension ProfileViewController {
     func configureTableView() {
+        let headerViewHeight: CGFloat = 44
+        
+        tableView.sectionHeaderHeight = headerViewHeight
+        tableView.tableHeaderView = tableViewHeaderView
         tableView.delegate = tableViewdataSource
         tableView.dataSource = tableViewdataSource
     }
