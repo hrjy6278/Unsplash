@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ProfileHeaderView: UIView {
     //MARK: Properties
@@ -72,6 +73,8 @@ extension ProfileHeaderView: HierarchySetupable {
 extension ProfileHeaderView {
     func configure(selfieURL: URL?, name: String?) {
         self.nameLabel.text = name
-        profileImageView.kf.setImage(with: selfieURL)
+        
+        let processor = RoundCornerImageProcessor(cornerRadius: 50)
+        profileImageView.kf.setImage(with: selfieURL, options: [.processor(processor)])
     }
 }
