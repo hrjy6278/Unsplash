@@ -13,14 +13,13 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     var selected = "person.fill"
     var barTitle = "Profile"
     
+    private let networkService = UnsplashAPIManager()
     private let tableViewdataSource = ImageListDataSource()
     private let tableViewHeaderView = ProfileHeaderView()
     
     private var tableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ProfileHeaderView.self,
-                           forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifier)
         tableView.register(ImageListTableViewCell.self,
                            forCellReuseIdentifier: ImageListTableViewCell.cellID)
         
@@ -33,6 +32,7 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
         view.backgroundColor = .white
         setupView()
         configureTableView()
+        fetchUserProfile()
     }
 }
 
@@ -55,11 +55,40 @@ extension ProfileViewController: HierarchySetupable {
 //MARK: - Configure Views
 extension ProfileViewController {
     func configureTableView() {
-        let headerViewHeight: CGFloat = 44
-        
-        tableView.sectionHeaderHeight = headerViewHeight
+        tableViewHeaderView.frame.size.height = view.frame.size.height / 8
+        tableView.rowHeight = view.frame.size.height / 4
         tableView.tableHeaderView = tableViewHeaderView
-        tableView.delegate = tableViewdataSource
         tableView.dataSource = tableViewdataSource
+        tableView.delegate = tableViewdataSource
+    }
+}
+
+//MARK: - NetworkService
+extension ProfileViewController {
+    func fetchUserProfile() {
+        networkService.fetchUserProfile { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let profile):
+                self.tableViewHeaderView.configure(selfieURL: profile.profileImage?.mediumURL,
+                                                   name: profile.userName)
+                self.fetchUserLikePhotos(userID: profile.userName ?? "")
+            case .failure(let error):
+                debugPrint("좋아하는 사진 가져오기 실패", error)
+            }
+        }
+    }
+    
+    func fetchUserLikePhotos(userID: String) {
+        networkService.fetchUserLikePhotos(userName: userID) { result in
+            switch result {
+            case .success(let photos):
+                self.tableViewdataSource.photos = photos
+                self.tableView.reloadData()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
 }
