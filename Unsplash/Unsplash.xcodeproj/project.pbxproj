@@ -21,7 +21,7 @@
 		74A225BB2770B93A002DB300 /* TokenManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225BA2770B93A002DB300 /* TokenManager.swift */; };
 		74A225BD2770BEA1002DB300 /* KeyChainQueryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225BC2770BEA1002DB300 /* KeyChainQueryable.swift */; };
 		74A225BF2770BF93002DB300 /* TokenQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225BE2770BF93002DB300 /* TokenQuery.swift */; };
-		74A225C32771750C002DB300 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C22771750B002DB300 /* LoginViewController.swift */; };
+		74A225C32771750C002DB300 /* Oauth2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C22771750B002DB300 /* Oauth2ViewController.swift */; };
 		74A225C5277188EA002DB300 /* Extension + URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C4277188EA002DB300 /* Extension + URL.swift */; };
 		74A225C72771FF78002DB300 /* PhotoLike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225C62771FF78002DB300 /* PhotoLike.swift */; };
 		74A225CC2772C5C1002DB300 /* UnsplashImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225CB2772C5C1002DB300 /* UnsplashImagesView.swift */; };
@@ -29,6 +29,7 @@
 		74A225D627730866002DB300 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225D527730866002DB300 /* ProfileViewController.swift */; };
 		74A225D827730CFD002DB300 /* TabBarImageName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225D727730CFD002DB300 /* TabBarImageName.swift */; };
 		74A225DA27732A6E002DB300 /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225D927732A6E002DB300 /* ProfileHeaderView.swift */; };
+		74A225DD277354DB002DB300 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A225DC277354DB002DB300 /* Profile.swift */; };
 		74BCE1BB276C703B0093B1E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */; };
 		74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */; };
 		74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1BE276C703B0093B1E6 /* SearchViewController.swift */; };
@@ -40,6 +41,7 @@
 		74BCE1EB276C75380093B1E6 /* UnsplashTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */; };
 		74BCE1EE276C76DF0093B1E6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 74BCE1ED276C76DF0093B1E6 /* Alamofire */; };
 		74BCE1F1276C76F80093B1E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 74BCE1F0276C76F80093B1E6 /* Kingfisher */; };
+		74CE8D30277494B1008BD593 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D2F277494B1008BD593 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +76,7 @@
 		74A225BA2770B93A002DB300 /* TokenManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenManager.swift; sourceTree = "<group>"; };
 		74A225BC2770BEA1002DB300 /* KeyChainQueryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainQueryable.swift; sourceTree = "<group>"; };
 		74A225BE2770BF93002DB300 /* TokenQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenQuery.swift; sourceTree = "<group>"; };
-		74A225C22771750B002DB300 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74A225C22771750B002DB300 /* Oauth2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Oauth2ViewController.swift; sourceTree = "<group>"; };
 		74A225C4277188EA002DB300 /* Extension + URL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + URL.swift"; sourceTree = "<group>"; };
 		74A225C62771FF78002DB300 /* PhotoLike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoLike.swift; sourceTree = "<group>"; };
 		74A225CB2772C5C1002DB300 /* UnsplashImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashImagesView.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 		74A225D527730866002DB300 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		74A225D727730CFD002DB300 /* TabBarImageName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarImageName.swift; sourceTree = "<group>"; };
 		74A225D927732A6E002DB300 /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		74A225DC277354DB002DB300 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		74BCE1B7276C703B0093B1E6 /* Unsplash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Unsplash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74BCE1BA276C703B0093B1E6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74BCE1BC276C703B0093B1E6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +98,7 @@
 		74BCE1DB276C703E0093B1E6 /* UnsplashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashUITests.swift; sourceTree = "<group>"; };
 		74BCE1DD276C703E0093B1E6 /* UnsplashUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTabbarController.swift; sourceTree = "<group>"; };
+		74CE8D2F277494B1008BD593 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +207,8 @@
 		74A225CA27722A89002DB300 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				74A225C22771750B002DB300 /* LoginViewController.swift */,
+				74CE8D2F277494B1008BD593 /* LoginViewController.swift */,
+				74A225C22771750B002DB300 /* Oauth2ViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -291,6 +296,7 @@
 			children = (
 				74A2259B276CE0CB002DB300 /* SearchPhoto.swift */,
 				74A225C62771FF78002DB300 /* PhotoLike.swift */,
+				74A225DC277354DB002DB300 /* Profile.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -463,6 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74CE8D30277494B1008BD593 /* LoginViewController.swift in Sources */,
 				74A225CC2772C5C1002DB300 /* UnsplashImagesView.swift in Sources */,
 				74A2259E276ECB7F002DB300 /* ImageListTableViewCell.swift in Sources */,
 				74A22596276CD625002DB300 /* UnsplashAPIManager.swift in Sources */,
@@ -470,7 +477,7 @@
 				74A225C5277188EA002DB300 /* Extension + URL.swift in Sources */,
 				74A22598276CDAF0002DB300 /* PasingManager.swift in Sources */,
 				74A225D627730866002DB300 /* ProfileViewController.swift in Sources */,
-				74A225C32771750C002DB300 /* LoginViewController.swift in Sources */,
+				74A225C32771750C002DB300 /* Oauth2ViewController.swift in Sources */,
 				74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
 				74A225AF27706A97002DB300 /* KeyChainStore.swift in Sources */,
@@ -488,6 +495,7 @@
 				74A225AA277053DA002DB300 /* UnsplashParameter.swift in Sources */,
 				74BCE1EB276C75380093B1E6 /* UnsplashTabbarController.swift in Sources */,
 				74A225AC2770642B002DB300 /* UnsplashInterceptor.swift in Sources */,
+				74A225DD277354DB002DB300 /* Profile.swift in Sources */,
 				74A225C72771FF78002DB300 /* PhotoLike.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
