@@ -96,4 +96,22 @@ extension UnsplashAPIManager {
                 }
             }
     }
+    
+    func fetchUserLikePhotos(userName: String,
+                             completion: @escaping (Result<[Photo], Error>) -> Void) {
+        guard isFetching == false else { return }
+        
+        self.isFetching = true
+        sessionManager.request(UnsplashRouter.listUserLike(userName: userName))
+            .responseDecodable(of: [Photo].self) { responseData in
+                
+                self.isFetching = false
+                switch responseData.result {
+                case .success(let photos):
+                    completion(.success(photos))
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
+    }
 }
