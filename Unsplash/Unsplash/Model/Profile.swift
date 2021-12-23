@@ -9,8 +9,8 @@ import Foundation
 
 struct Profile: Decodable {
     let id: String
-    let userName: String?
-    let name: String?
+    let userName: String
+    let name: String
     let profileImage: SelfieImage?
     
     enum CodingKeys: String, CodingKey {
