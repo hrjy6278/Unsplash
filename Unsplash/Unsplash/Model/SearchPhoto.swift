@@ -24,7 +24,7 @@ struct Photo: Decodable {
     let id: String
     let createdAt: String
     let description: String?
-    let profile: Profile?
+    let profile: Profile
     var likes: Int
     var isUserLike: Bool
     let urls: Urls

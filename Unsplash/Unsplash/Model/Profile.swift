@@ -9,12 +9,12 @@ import Foundation
 
 struct Profile: Decodable {
     let id: String
-    let username: String?
+    let userName: String?
     let name: String?
     let profileImage: SelfieImage?
     
     enum CodingKeys: String, CodingKey {
-        case id,username,name
+        case id,userName,name
         case profileImage = "profile_image"
     }
 }
