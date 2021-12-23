@@ -15,7 +15,7 @@ enum UnsplashRouter {
     case photoLike(id: String)
     case photoUnlike(id: String)
     case myProfile
-    case listUserLike(userName: String)
+    case listUserLike(userName: String, page: Int)
     
     var baseURL: String {
         switch self {
@@ -32,7 +32,7 @@ enum UnsplashRouter {
             return "/search/photos"
         case .photoLike (let id), .photoUnlike(let id):
             return "/photos/\(id)/like"
-        case .listUserLike(let userName):
+        case .listUserLike(let userName, _):
             return "/users/\(userName)/likes"
         case .myProfile:
             return "/me"
@@ -77,7 +77,9 @@ enum UnsplashRouter {
                 "code": code,
                 "grant_type": UnsplashParameter.grandType
             ]
-        case .photoLike, .photoUnlike, .myProfile, .listUserLike:
+        case .listUserLike(_, let page):
+            return ["page": String(page)]
+        case .photoLike, .photoUnlike, .myProfile:
             return [:]
         }
     }

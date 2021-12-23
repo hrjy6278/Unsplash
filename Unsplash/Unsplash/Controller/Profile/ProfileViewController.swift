@@ -13,6 +13,9 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     var selected = "person.fill"
     var barTitle = "Profile"
     
+    private var page = 1
+    private var userName = ""
+    
     private let networkService = UnsplashAPIManager()
     private let tableViewdataSource = ImageListDataSource()
     private let tableViewHeaderView = ProfileHeaderView()
@@ -55,9 +58,11 @@ extension ProfileViewController: HierarchySetupable {
 //MARK: - Configure Views
 extension ProfileViewController {
     func configureTableView() {
+        
         tableViewHeaderView.frame.size.height = view.frame.size.height / 8
         tableView.rowHeight = view.frame.size.height / 4
         tableView.tableHeaderView = tableViewHeaderView
+        tableViewdataSource.delegate = self
         tableView.dataSource = tableViewdataSource
         tableView.delegate = tableViewdataSource
     }
@@ -73,22 +78,34 @@ extension ProfileViewController {
             case .success(let profile):
                 self.tableViewHeaderView.configure(selfieURL: profile.profileImage?.mediumURL,
                                                    name: profile.userName)
-                self.fetchUserLikePhotos(userID: profile.userName ?? "")
+                self.fetchUserLikePhotos(userName: profile.userName)
+                self.userName = profile.userName
             case .failure(let error):
                 debugPrint("좋아하는 사진 가져오기 실패", error)
             }
         }
     }
     
-    func fetchUserLikePhotos(userID: String) {
-        networkService.fetchUserLikePhotos(userName: userID) { result in
+    func fetchUserLikePhotos(userName: String) {
+        networkService.fetchUserLikePhotos(userName: userName, page: self.page) { result in
             switch result {
             case .success(let photos):
-                self.tableViewdataSource.photos = photos
+                photos.forEach { self.tableViewdataSource.photos.append($0) }
                 self.tableView.reloadData()
+                self.page += 1
             case .failure(let error):
                 debugPrint(error)
             }
         }
+    }
+}
+
+extension ProfileViewController: ImageListDataSourceDelegate {
+    func morePhotos() {
+        fetchUserLikePhotos(userName: userName)
+    }
+    
+    func didTapedLikeButton(photoId: String) {
+        print("사용하지않는버튼입니다.")
     }
 }

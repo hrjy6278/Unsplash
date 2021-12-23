@@ -98,11 +98,12 @@ extension UnsplashAPIManager {
     }
     
     func fetchUserLikePhotos(userName: String,
+                             page: Int,
                              completion: @escaping (Result<[Photo], Error>) -> Void) {
         guard isFetching == false else { return }
         
         self.isFetching = true
-        sessionManager.request(UnsplashRouter.listUserLike(userName: userName))
+        sessionManager.request(UnsplashRouter.listUserLike(userName: userName, page: page))
             .responseDecodable(of: [Photo].self) { responseData in
                 
                 self.isFetching = false
