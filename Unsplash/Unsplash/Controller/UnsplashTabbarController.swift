@@ -43,11 +43,10 @@ class UnsplashTabbarController: UITabBarController {
 //MARK: - Method
 extension UnsplashTabbarController {
     private func configureTabBarController() {
-        addChild(searchViewController)
         if isTokenSaved {
-           addChild(profileViewController)
+            viewControllers = [searchViewController, profileViewController]
         } else {
-          addChild(loginViewController)
+            viewControllers = [searchViewController, loginViewController]
         }
     }
     
@@ -71,11 +70,19 @@ extension UnsplashTabbarController {
         navigationController?.navigationBar.backgroundColor = .gray
     }
     
+    private func logout() {
+        TokenManager.shared.clearAccessToken()
+        navigationItem.rightBarButtonItem?.title = "로그인"
+        
+        let searchIndex = 0
+        let profileIndex = 1
+        selectedIndex = searchIndex
+        viewControllers?[profileIndex] = loginViewController
+    }
+    
     @objc func didTapLoginButton(_ sender: UIBarButtonItem) {
         if isTokenSaved {
-            //MARK: ToDo 정상적으로 로그아웃됐다고 얼러트를 띄워주기
-            TokenManager.shared.clearAccessToken()
-            navigationItem.rightBarButtonItem?.title = "로그인"
+            logout()
         } else {
             navigationController?.pushViewController(Oauth2ViewController(), animated: true)
         }
