@@ -7,10 +7,8 @@
 
 import UIKit
 
-class ProfileHeaderView: UITableViewHeaderFooterView {
+class ProfileHeaderView: UIView {
     //MARK: Properties
-    static let identifier = "ProfileHeaderView"
-    
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -21,9 +19,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }()
     
     private var nameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.preferredFont(forTextStyle: .title2)
+        label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         return label
     }()
@@ -32,11 +31,21 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
+        stackView.distribution = .fillProportionally
         stackView.spacing = 8
         
         return stackView
     }()
+    
+    //MARK: - View Life Cycle
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupView()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("스토리보드는 지원하지 않습니다.")
+    }
 }
 
 //MARK: - Setup View And Layout
@@ -44,8 +53,8 @@ extension ProfileHeaderView: HierarchySetupable {
     func setupViewHierarchy() {
         stackView.addArrangedSubview(profileImageView)
         stackView.addArrangedSubview(nameLabel)
-        
-        contentView.addSubview(stackView)
+      
+        addSubview(stackView)
     }
     
     func setupLayout() {
@@ -53,8 +62,16 @@ extension ProfileHeaderView: HierarchySetupable {
         
         NSLayoutConstraint.activate([
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
-            stackView.leadingAnchor.constraint(equalTo: leftAnchor,
+            stackView.leadingAnchor.constraint(equalTo: leadingAnchor,
                                                constant: stackViewLeadingConstant)
         ])
+    }
+}
+
+//MARK: - Configure Method
+extension ProfileHeaderView {
+    func configure(selfieURL: URL?, name: String?) {
+        self.nameLabel.text = name
+        profileImageView.kf.setImage(with: selfieURL)
     }
 }
