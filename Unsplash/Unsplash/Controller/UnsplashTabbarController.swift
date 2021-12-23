@@ -17,8 +17,9 @@ class UnsplashTabbarController: UITabBarController {
         return button
     }()
     
-    private var searchViewController = SearchViewController()
-    private var profileViewController = ProfileViewController()
+    private let searchViewController = SearchViewController()
+    private let profileViewController = ProfileViewController()
+    private let loginViewController = LoginViewController()
     
     private var isTokenSaved: Bool {
         TokenManager.shared.isTokenSaved ? true : false
@@ -29,22 +30,25 @@ class UnsplashTabbarController: UITabBarController {
         super.viewDidLoad()
         setupTabBarItem(for: searchViewController)
         setupTabBarItem(for: profileViewController)
-        configureTabBarController()
+        setupTabBarItem(for: loginViewController)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigation()
+        configureTabBarController()
     }
 }
 
 //MARK: - Method
 extension UnsplashTabbarController {
     private func configureTabBarController() {
-        viewControllers = [
-            searchViewController,
-            profileViewController
-        ]
+        addChild(searchViewController)
+        if isTokenSaved {
+           addChild(profileViewController)
+        } else {
+          addChild(loginViewController)
+        }
     }
     
     private func setupTabBarItem(for controller: UIViewController) {
@@ -73,7 +77,7 @@ extension UnsplashTabbarController {
             TokenManager.shared.clearAccessToken()
             navigationItem.rightBarButtonItem?.title = "로그인"
         } else {
-            navigationController?.pushViewController(LoginViewController(), animated: true)
+            navigationController?.pushViewController(Oauth2ViewController(), animated: true)
         }
     }
 }
