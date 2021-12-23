@@ -2,52 +2,28 @@
 //  LoginViewController.swift
 //  Unsplash
 //
-//  Created by KimJaeYoun on 2021/12/21.
+//  Created by KimJaeYoun on 2021/12/23.
 //
 
 import UIKit
-import AuthenticationServices
 
 class LoginViewController: UIViewController {
-    private var webAuthenticationSession: ASWebAuthenticationSession?
-    private let unsplashAPIManager = UnsplashAPIManager()
-    
+
     override func viewDidLoad() {
-        view.backgroundColor = .white
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        getAuthrization()
-    }
-}
 
-//MARK: - Method
-extension LoginViewController {
-    func getAuthrization() {
-        guard let URL = try? UnsplashRouter.userAuthorize.asURLRequest().url else {
-            return
-        }
-        let ASwebCallbackURLScheme = "jissCallback"
-        
-        webAuthenticationSession = ASWebAuthenticationSession(url: URL,
-                                                              callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBackURL, erorr in
-            guard erorr == nil,
-                  let callBackURL = callBackURL else { return }
-            
-            guard let accessCode = callBackURL.getValue(for: "code") else { return }
-           
-            self?.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
-                guard isSuccess else { return }
-                self?.navigationController?.popViewController(animated: true)
-            }
-        }
-        webAuthenticationSession?.presentationContextProvider = self
-        webAuthenticationSession?.start()
-    }
-}
+    /*
+    // MARK: - Navigation
 
-extension LoginViewController: ASWebAuthenticationPresentationContextProviding {
-    func presentationAnchor(for session: ASWebAuthenticationSession) -> ASPresentationAnchor {
-        return ASPresentationAnchor()
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
     }
+    */
+
 }

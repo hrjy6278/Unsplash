@@ -36,7 +36,7 @@ extension ImageListDataSource: UITableViewDataSource {
         
         cell.delegate = self
         cell.configure(id: photo.id,
-                       photographerName: photo.user?.username,
+                       photographerName: photo.profile.userName,
                        likeCount: String(photo.likes),
                        isUserLike: photo.isUserLike,
                        imageUrl: photo.urls.regularURL)

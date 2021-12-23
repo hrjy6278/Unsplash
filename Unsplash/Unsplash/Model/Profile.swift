@@ -14,8 +14,9 @@ struct Profile: Decodable {
     let profileImage: SelfieImage?
     
     enum CodingKeys: String, CodingKey {
-        case id,userName,name
+        case id,name
         case profileImage = "profile_image"
+        case userName = "username"
     }
 }
 
