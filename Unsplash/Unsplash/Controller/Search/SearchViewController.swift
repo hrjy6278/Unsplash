@@ -14,7 +14,7 @@ class SearchViewController: UIViewController, TabBarImageInfo {
     var barTitle = "Search"
     
     private let networkService = UnsplashAPIManager()
-    private let imageListViewDataSource = ImageListDataSource()
+    private let tableViewDataSource = ImageListDataSource()
     private var page: Int = 1
     private var query: String = ""
     private var photos: [Photo] = []
@@ -45,11 +45,16 @@ class SearchViewController: UIViewController, TabBarImageInfo {
         configureTableView()
         configureSearchBar()
         configureImageListDataSource()
+        configureNotificationObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         reloadPhotos()
+    }
+    
+    deinit {
+        removeNotificationObserver()
     }
 }
 
@@ -74,8 +79,8 @@ extension SearchViewController: HierarchySetupable {
     }
     
     private func configureTableView() {
-        tableView.dataSource = imageListViewDataSource
-        tableView.delegate = imageListViewDataSource
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDataSource
         tableView.rowHeight = view.frame.size.height / 4
     }
     
@@ -84,7 +89,7 @@ extension SearchViewController: HierarchySetupable {
     }
     
     private func configureImageListDataSource() {
-        imageListViewDataSource.delegate = self
+        tableViewDataSource.delegate = self
     }
 }
 
@@ -107,7 +112,7 @@ extension SearchViewController {
             switch result {
             case .success(let photoResult):
                 photoResult.photos.forEach { self.photos.append($0) }
-                self.imageListViewDataSource.photos = self.photos
+                self.tableViewDataSource.photos = self.photos
                 self.tableView.reloadData()
                 self.page += 1
                 
@@ -137,7 +142,7 @@ extension SearchViewController {
                 photos[$0].isUserLike = photoResult.photo.isUserLike
                 photos[$0].likes = photoResult.photo.likes
             }
-            self.imageListViewDataSource.photos = self.photos
+            self.tableViewDataSource.photos = self.photos
             self.tableView.reloadData()
             
         case .failure:
@@ -168,5 +173,25 @@ extension SearchViewController: ImageListDataSourceDelegate {
     func didTapedLikeButton(photoId: String) {
         guard TokenManager.shared.isTokenSaved else { return }
         fetchLikePhoto(photoId: photoId)
+    }
+}
+
+//MARK: - Notification Add Observer
+extension SearchViewController {
+    private func configureNotificationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didReceivedNotification(_:)),
+                                               name: .didFinishedDeleteKeyChainValue, object: nil)
+    }
+    
+    @objc func didReceivedNotification(_ sender: Notification) {
+        tableViewDataSource.photos = []
+        tableView.reloadData()
+    }
+    
+    private func removeNotificationObserver() {
+        NotificationCenter.default.removeObserver(self,
+                                                  name: .didFinishedDeleteKeyChainValue,
+                                                  object: nil)
     }
 }
