@@ -42,6 +42,7 @@ class SearchViewController: UIViewController {
         configureSearchBar()
         configureImageListDataSource()
         configureNotificationObserver()
+        configureTapGesture()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -86,6 +87,16 @@ extension SearchViewController: HierarchySetupable {
     
     private func configureImageListDataSource() {
         tableViewDataSource.delegate = self
+    }
+    
+    private func configureTapGesture() {
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(dissmissKeyboard))
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dissmissKeyboard() {
+        view.endEditing(true)
     }
 }
 
@@ -156,6 +167,7 @@ extension SearchViewController: UISearchBarDelegate {
         self.photos = []
         self.page = 1
         searchPhotos()
+        searchBar.text = ""
         searchBar.resignFirstResponder()
     }
 }
