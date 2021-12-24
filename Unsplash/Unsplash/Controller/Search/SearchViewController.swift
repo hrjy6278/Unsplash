@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController {
     //MARK: - Properties
     private let networkService = UnsplashAPIManager()
     private let tableViewDataSource = ImageListDataSource()

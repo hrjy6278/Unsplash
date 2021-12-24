@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UnsplashTabbarController: UITabBarController {
+final class UnsplashTabbarController: UITabBarController {
     //MARK: Properties
     private lazy var loginButton: UIBarButtonItem = {
         let button = UIBarButtonItem()

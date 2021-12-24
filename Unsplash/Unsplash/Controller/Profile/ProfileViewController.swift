@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     //MARK: Properties
     private var page: Int = .initialPage
     private var photos = [Photo]()

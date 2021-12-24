@@ -8,7 +8,7 @@
 import UIKit
 import AuthenticationServices
 
-class Oauth2ViewController: UIViewController {
+final class Oauth2ViewController: UIViewController {
     //MARK: Properties
     private var webAuthenticationSession: ASWebAuthenticationSession?
     private let unsplashAPIManager = UnsplashAPIManager()
@@ -23,7 +23,7 @@ class Oauth2ViewController: UIViewController {
     }
 }
 
-//MARK: - Method
+//MARK: - Authrization Method
 extension Oauth2ViewController {
     private func getAuthrization() {
         guard let URL = try? UnsplashRouter.userAuthorize.asURLRequest().url else { return }

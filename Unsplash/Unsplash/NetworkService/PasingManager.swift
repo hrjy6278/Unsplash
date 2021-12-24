@@ -8,7 +8,6 @@
 import Foundation
 
 struct PasingManager {
-    
     enum PasingError: Error {
         case decodeError
     }

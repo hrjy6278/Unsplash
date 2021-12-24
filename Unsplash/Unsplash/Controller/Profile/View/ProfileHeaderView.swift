@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProfileHeaderView: UIView {
+final class ProfileHeaderView: UIView {
     //MARK: Properties
     private var profileImageView: UIImageView = {
         let imageView = UIImageView()

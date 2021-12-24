@@ -21,7 +21,7 @@ final class ImageListDataSource: NSObject {
 }
 
 
-//MARK: - Method
+//MARK: - Configure Method
 extension ImageListDataSource {
     func configure(_ photos: [Photo]) {
         self.photos = photos
