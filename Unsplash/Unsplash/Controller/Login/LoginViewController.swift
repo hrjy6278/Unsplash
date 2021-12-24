@@ -7,12 +7,8 @@
 
 import UIKit
 
-class LoginViewController: UIViewController, TabBarImageInfo {
+class LoginViewController: UIViewController {
     //MARK: Properties
-    var nomal = "person"
-    var selected = "person.fill"
-    var barTitle = "Profile"
-    
     private var descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -65,5 +61,20 @@ extension LoginViewController: HierarchySetupable {
 extension LoginViewController {
     @objc func didTapLoginButton(_ sender: UIButton) {
         navigationController?.pushViewController(Oauth2ViewController(), animated: true)
+    }
+}
+
+//MARK: - TabBar Image Info Protocol
+extension LoginViewController: TabBarImageInfo {
+    var nomal: String {
+        return "person"
+    }
+    
+    var selected: String {
+        return "person.fill"
+    }
+    
+    var barTitle: String {
+        return "Profile"
     }
 }

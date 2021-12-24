@@ -7,12 +7,8 @@
 
 import UIKit
 
-class SearchViewController: UIViewController, TabBarImageInfo {
+class SearchViewController: UIViewController {
     //MARK: - Properties
-    var nomal = "magnifyingglass.circle"
-    var selected = "magnifyingglass.circle.fill"
-    var barTitle = "Search"
-    
     private let networkService = UnsplashAPIManager()
     private let tableViewDataSource = ImageListDataSource()
     private var page: Int = 1
@@ -193,5 +189,20 @@ extension SearchViewController {
         NotificationCenter.default.removeObserver(self,
                                                   name: .didFinishedDeleteKeyChainValue,
                                                   object: nil)
+    }
+}
+
+//MARK: - TabBar Image Info Protocol
+extension SearchViewController: TabBarImageInfo {
+    var nomal: String {
+        return "magnifyingglass.circle"
+    }
+    
+    var selected: String {
+        return "magnifyingglass.circle.fill"
+    }
+    
+    var barTitle: String {
+        return "Search"
     }
 }

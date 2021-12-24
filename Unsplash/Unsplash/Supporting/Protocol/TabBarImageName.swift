@@ -8,7 +8,7 @@
 import Foundation
 
 protocol TabBarImageInfo {
-    var nomal: String { get set }
-    var selected: String { get set }
-    var barTitle: String { get set }
+    var nomal: String { get }
+    var selected: String { get }
+    var barTitle: String { get }
 }

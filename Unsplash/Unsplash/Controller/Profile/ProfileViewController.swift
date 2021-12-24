@@ -7,12 +7,8 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController, TabBarImageInfo {
+class ProfileViewController: UIViewController {
     //MARK: Properties
-    var nomal = "person"
-    var selected = "person.fill"
-    var barTitle = "Profile"
-    
     private var page = 1
     private var userName = ""
     
@@ -122,5 +118,20 @@ extension ProfileViewController: ImageListDataSourceDelegate {
     
     func didTapedLikeButton(photoId: String) {
         print("사용하지않는버튼입니다.")
+    }
+}
+
+//MARK: - TabBar Image Info Protocol
+extension ProfileViewController: TabBarImageInfo {
+    var nomal: String {
+        return "person"
+    }
+    
+    var selected: String {
+        return "person.fill"
+    }
+    
+    var barTitle: String {
+        return "Profile"
     }
 }
