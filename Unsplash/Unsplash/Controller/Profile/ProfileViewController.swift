@@ -10,8 +10,12 @@ import UIKit
 class ProfileViewController: UIViewController {
     //MARK: Properties
     private var page: Int = .initialPage
-    private var userName = ""
     private var photos = [Photo]()
+    private var userName = "" {
+        didSet {
+            self.fetchUserLikePhotos(userName:userName)
+        }
+    }
     
     private let networkService = UnsplashAPIManager()
     private let tableViewDataSource = ImageListDataSource()
@@ -79,7 +83,6 @@ extension ProfileViewController {
             case .success(let profile):
                 self.tableViewHeaderView.configure(selfieURL: profile.profileImage?.mediumURL,
                                                    name: profile.userName)
-                self.fetchUserLikePhotos(userName: profile.userName)
                 self.userName = profile.userName
             case .failure(let error):
                 debugPrint("좋아하는 사진 가져오기 실패", error)
@@ -88,7 +91,8 @@ extension ProfileViewController {
     }
     
     private func fetchUserLikePhotos(userName: String) {
-        networkService.fetchUserLikePhotos(userName: userName, page: self.page) { [weak self] result in
+        networkService.fetchUserLikePhotos(userName: userName,
+                                           page: self.page) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
