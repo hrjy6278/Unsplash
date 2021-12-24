@@ -17,7 +17,7 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
     private var userName = ""
     
     private let networkService = UnsplashAPIManager()
-    private let tableViewdataSource = ImageListDataSource()
+    private let tableViewDataSource = ImageListDataSource()
     private let tableViewHeaderView = ProfileHeaderView()
     
     private var tableView: UITableView = {
@@ -36,6 +36,11 @@ class ProfileViewController: UIViewController, TabBarImageInfo {
         setupView()
         configureTableView()
         fetchUserProfile()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadUserLikePhotos()
     }
 }
 
@@ -61,15 +66,15 @@ extension ProfileViewController {
         tableViewHeaderView.frame.size.height = view.frame.size.height / 8
         tableView.rowHeight = view.frame.size.height / 4
         tableView.tableHeaderView = tableViewHeaderView
-        tableViewdataSource.delegate = self
-        tableView.dataSource = tableViewdataSource
-        tableView.delegate = tableViewdataSource
+        tableViewDataSource.delegate = self
+        tableView.dataSource = tableViewDataSource
+        tableView.delegate = tableViewDataSource
     }
 }
 
 //MARK: - NetworkService
 extension ProfileViewController {
-    func fetchUserProfile() {
+    private func fetchUserProfile() {
         networkService.fetchUserProfile { [weak self] result in
             guard let self = self else { return }
             
@@ -85,19 +90,27 @@ extension ProfileViewController {
         }
     }
     
-    func fetchUserLikePhotos(userName: String) {
+    private func fetchUserLikePhotos(userName: String) {
         networkService.fetchUserLikePhotos(userName: userName, page: self.page) { [weak self] result in
             guard let self = self else { return }
             
             switch result {
             case .success(let photos):
-                photos.forEach { self.tableViewdataSource.photos.append($0) }
+                photos.forEach { self.tableViewDataSource.photos.append($0) }
                 self.tableView.reloadData()
                 self.page += 1
             case .failure(let error):
                 debugPrint(error)
             }
         }
+    }
+    
+    private func reloadUserLikePhotos() {
+        guard userName != "" else { return }
+        
+        tableViewDataSource.photos = []
+        page = 1
+        fetchUserLikePhotos(userName: userName)
     }
 }
 
