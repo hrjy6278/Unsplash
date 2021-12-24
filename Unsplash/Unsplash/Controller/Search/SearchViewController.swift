@@ -126,7 +126,7 @@ extension SearchViewController {
             switch result {
             case .success(let photoResult):
                 photoResult.photos.forEach { self.photos.append($0) }
-                self.tableViewDataSource.photos = self.photos
+                self.tableViewDataSource.configure(self.photos)
                 self.tableView.reloadData()
                 self.page += 1
                 
@@ -156,7 +156,7 @@ extension SearchViewController {
                 photos[$0].isUserLike = photoResult.photo.isUserLike
                 photos[$0].likes = photoResult.photo.likes
             }
-            self.tableViewDataSource.photos = self.photos
+            self.tableViewDataSource.configure(self.photos)
             self.tableView.reloadData()
             
         case .failure:
@@ -200,7 +200,9 @@ extension SearchViewController {
     }
     
     @objc func didReceivedNotification(_ sender: Notification) {
-        tableViewDataSource.photos = []
+        photos = []
+        page = 1
+        searchPhotos()
         tableView.reloadData()
     }
     

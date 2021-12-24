@@ -11,6 +11,7 @@ class ProfileViewController: UIViewController {
     //MARK: Properties
     private var page = 1
     private var userName = ""
+    private var photos = [Photo]()
     
     private let networkService = UnsplashAPIManager()
     private let tableViewDataSource = ImageListDataSource()
@@ -92,7 +93,8 @@ extension ProfileViewController {
             
             switch result {
             case .success(let photos):
-                photos.forEach { self.tableViewDataSource.photos.append($0) }
+                photos.forEach { self.photos.append($0) }
+                self.tableViewDataSource.configure(self.photos)
                 self.tableView.reloadData()
                 self.page += 1
             case .failure(let error):
@@ -104,7 +106,7 @@ extension ProfileViewController {
     private func reloadUserLikePhotos() {
         guard userName != "" else { return }
         
-        tableViewDataSource.photos = []
+        photos = []
         page = 1
         fetchUserLikePhotos(userName: userName)
     }

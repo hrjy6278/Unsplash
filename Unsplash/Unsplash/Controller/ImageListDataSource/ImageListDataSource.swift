@@ -17,7 +17,15 @@ protocol ImageListDataSourceDelegate: AnyObject {
 final class ImageListDataSource: NSObject {
     //MARK: Properties
     weak var delegate: ImageListDataSourceDelegate?
-    var photos: [Photo] = []
+    private var photos: [Photo] = []
+}
+
+
+//MARK: - Method
+extension ImageListDataSource {
+    func configure(_ photos: [Photo]) {
+        self.photos = photos
+    }
 }
 
 //MARK: - UITableView DataSource
