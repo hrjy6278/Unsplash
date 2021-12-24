@@ -11,7 +11,7 @@ class SearchViewController: UIViewController {
     //MARK: - Properties
     private let networkService = UnsplashAPIManager()
     private let tableViewDataSource = ImageListDataSource()
-    private var page: Int = 1
+    private var page: Int = .initialPage
     private var query: String = ""
     private var photos: [Photo] = []
     
@@ -114,7 +114,7 @@ extension SearchViewController {
               query != "",
               TokenManager.shared.isTokenSaved else { return }
         photos = []
-        page = 1
+        page = .initialPage
         searchPhotos()
     }
     
@@ -129,7 +129,7 @@ extension SearchViewController {
                 photoResult.photos.forEach { self.photos.append($0) }
                 self.tableViewDataSource.configure(self.photos)
                 self.tableView.reloadData()
-                self.page += 1
+                self.page.addPage()
                 
             case .failure(let error):
                 //MARK: Todo: 에러메시지 출력
@@ -173,7 +173,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard let query = searchBar.text else { return }
         self.query = query
         self.photos = []
-        self.page = 1
+        self.page = .initialPage
         searchPhotos()
         searchBar.text = ""
         searchBar.resignFirstResponder()
@@ -202,9 +202,8 @@ extension SearchViewController {
     
     @objc func didReceivedNotification(_ sender: Notification) {
         photos = []
-        page = 1
+        page = .initialPage
         searchPhotos()
-        tableView.reloadData()
     }
     
     private func removeNotificationObserver() {

@@ -43,6 +43,7 @@
 		74BCE1F1276C76F80093B1E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 74BCE1F0276C76F80093B1E6 /* Kingfisher */; };
 		74CE8D30277494B1008BD593 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D2F277494B1008BD593 /* LoginViewController.swift */; };
 		74CE8D32277560AB008BD593 /* Extention + Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */; };
+		74CE8D3427759634008BD593 /* Extension + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D3327759634008BD593 /* Extension + Int.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +102,7 @@
 		74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTabbarController.swift; sourceTree = "<group>"; };
 		74CE8D2F277494B1008BD593 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention + Notification.Name.swift"; sourceTree = "<group>"; };
+		74CE8D3327759634008BD593 /* Extension + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Int.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */,
 				74A225C4277188EA002DB300 /* Extension + URL.swift */,
 				74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */,
+				74CE8D3327759634008BD593 /* Extension + Int.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -495,6 +498,7 @@
 				74A225D42772EC1B002DB300 /* ImageListDataSource.swift in Sources */,
 				74A225DA27732A6E002DB300 /* ProfileHeaderView.swift in Sources */,
 				74A225A6276ED23D002DB300 /* HierarchySetupable.swift in Sources */,
+				74CE8D3427759634008BD593 /* Extension + Int.swift in Sources */,
 				74A225A8277048CE002DB300 /* UnsplashRouter.swift in Sources */,
 				74A225AA277053DA002DB300 /* UnsplashParameter.swift in Sources */,
 				74BCE1EB276C75380093B1E6 /* UnsplashTabbarController.swift in Sources */,

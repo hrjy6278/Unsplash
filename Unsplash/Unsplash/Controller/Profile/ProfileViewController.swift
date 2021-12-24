@@ -9,7 +9,7 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     //MARK: Properties
-    private var page = 1
+    private var page: Int = .initialPage
     private var userName = ""
     private var photos = [Photo]()
     
@@ -96,7 +96,7 @@ extension ProfileViewController {
                 photos.forEach { self.photos.append($0) }
                 self.tableViewDataSource.configure(self.photos)
                 self.tableView.reloadData()
-                self.page += 1
+                self.page.addPage()
             case .failure(let error):
                 debugPrint(error)
             }
@@ -107,7 +107,7 @@ extension ProfileViewController {
         guard userName != "" else { return }
         
         photos = []
-        page = 1
+        page = .initialPage
         fetchUserLikePhotos(userName: userName)
     }
 }
