@@ -27,6 +27,7 @@ class SearchViewController: UIViewController {
     private let tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(ImageListTableViewCell.self,
                            forCellReuseIdentifier: ImageListTableViewCell.cellID)
         
