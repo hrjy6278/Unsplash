@@ -9,9 +9,11 @@ import UIKit
 import AuthenticationServices
 
 class Oauth2ViewController: UIViewController {
+    //MARK: Properties
     private var webAuthenticationSession: ASWebAuthenticationSession?
     private let unsplashAPIManager = UnsplashAPIManager()
     
+    //MARK: View Life Cycle
     override func viewDidLoad() {
         view.backgroundColor = .white
     }
@@ -23,28 +25,31 @@ class Oauth2ViewController: UIViewController {
 
 //MARK: - Method
 extension Oauth2ViewController {
-    func getAuthrization() {
-        guard let URL = try? UnsplashRouter.userAuthorize.asURLRequest().url else {
-            return
-        }
+    private func getAuthrization() {
+        guard let URL = try? UnsplashRouter.userAuthorize.asURLRequest().url else { return }
         let ASwebCallbackURLScheme = "jissCallback"
         
-        webAuthenticationSession = ASWebAuthenticationSession(url: URL,
-                                                              callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBackURL, erorr in
+        webAuthenticationSession = generateASWebAuthenticationSession(url: URL,
+                                                                      callbackURLScheme: ASwebCallbackURLScheme)
+        webAuthenticationSession?.presentationContextProvider = self
+        webAuthenticationSession?.start()
+    }
+    
+    private func generateASWebAuthenticationSession(url: URL,
+                                                    callbackURLScheme: String) -> ASWebAuthenticationSession {
+        return ASWebAuthenticationSession(url: url,
+                                          callbackURLScheme: callbackURLScheme) { [weak self] callBackURL, erorr in
             guard let self = self else { return }
             
             guard erorr == nil,
-                  let callBackURL = callBackURL else { return }
+                  let callBackURL = callBackURL,
+                  let accessCode = callBackURL.getValue(for: "code") else { return }
             
-            guard let accessCode = callBackURL.getValue(for: "code") else { return }
-           
             self.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
                 guard isSuccess else { return }
                 self.navigationController?.popViewController(animated: true)
             }
         }
-        webAuthenticationSession?.presentationContextProvider = self
-        webAuthenticationSession?.start()
     }
 }
 
