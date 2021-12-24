@@ -132,8 +132,9 @@ extension SearchViewController {
                 self.page.addPage()
                 
             case .failure(let error):
-                //MARK: Todo: 에러메시지 출력
-                debugPrint("사진가져오기 실패", error.localizedDescription)
+                let errorMessage = "이미지를 가져오는데 실패하였습니다. 다시한번 시도해주세요."
+                self.showAlert(message: errorMessage)
+                debugPrint(error.localizedDescription)
             }
         }
     }
@@ -166,7 +167,6 @@ extension SearchViewController {
     }
 }
 
-
 //MARK: - UISearchBarDelegate
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -187,7 +187,12 @@ extension SearchViewController: ImageListDataSourceDelegate {
     }
     
     func didTapedLikeButton(photoId: String) {
-        guard TokenManager.shared.isTokenSaved else { return }
+        guard TokenManager.shared.isTokenSaved else {
+            let message = "로그인 후 이용해주세요."
+            showAlert(message: message)
+            return
+        }
+        
         fetchLikePhoto(photoId: photoId)
     }
 }

@@ -88,7 +88,10 @@ extension UnsplashTabbarController {
     
     @objc func didTapLoginButton(_ sender: UIBarButtonItem) {
         if isTokenSaved {
-            logout()
+            let logoutMessage = "로그아웃이 완료되었습니다."
+            showAlert(message: logoutMessage) { [weak self] _ in
+                self?.logout()
+            }
         } else {
             navigationController?.pushViewController(Oauth2ViewController(), animated: true)
         }

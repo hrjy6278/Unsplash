@@ -45,6 +45,7 @@
 		74CE8D32277560AB008BD593 /* Extention + Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */; };
 		74CE8D3427759634008BD593 /* Extension + Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D3327759634008BD593 /* Extension + Int.swift */; };
 		74CE8D3A27759F16008BD593 /* Extension + UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D3927759F16008BD593 /* Extension + UIAlertController.swift */; };
+		74CE8D3C2775A6EC008BD593 /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D3B2775A6EC008BD593 /* Extension + UIViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,6 +106,7 @@
 		74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention + Notification.Name.swift"; sourceTree = "<group>"; };
 		74CE8D3327759634008BD593 /* Extension + Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + Int.swift"; sourceTree = "<group>"; };
 		74CE8D3927759F16008BD593 /* Extension + UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIAlertController.swift"; sourceTree = "<group>"; };
+		74CE8D3B2775A6EC008BD593 /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */,
 				74CE8D3327759634008BD593 /* Extension + Int.swift */,
 				74CE8D3927759F16008BD593 /* Extension + UIAlertController.swift */,
+				74CE8D3B2775A6EC008BD593 /* Extension + UIViewController.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -488,6 +491,7 @@
 				74A225D627730866002DB300 /* ProfileViewController.swift in Sources */,
 				74A225C32771750C002DB300 /* Oauth2ViewController.swift in Sources */,
 				74A225A0276ECBE1002DB300 /* Extension + UITableView.swift in Sources */,
+				74CE8D3C2775A6EC008BD593 /* Extension + UIViewController.swift in Sources */,
 				74BCE1BF276C703B0093B1E6 /* SearchViewController.swift in Sources */,
 				74A225AF27706A97002DB300 /* KeyChainStore.swift in Sources */,
 				74A225D827730CFD002DB300 /* TabBarImageInfo.swift in Sources */,

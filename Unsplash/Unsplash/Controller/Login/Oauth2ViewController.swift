@@ -43,10 +43,19 @@ extension Oauth2ViewController {
             
             guard erorr == nil,
                   let callBackURL = callBackURL,
-                  let accessCode = callBackURL.getValue(for: "code") else { return }
+                  let accessCode = callBackURL.getValue(for: "code") else {
+                      let message = "로그인에 실패하였습니다. 다시 시도해주세요."
+                      self.showAlert(message: message) { _ in
+                          self.navigationController?.popViewController(animated: true)
+                      }
+                      return
+                  }
             
             self.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
-                guard isSuccess else { return }
+                if isSuccess == false {
+                    let message = "로그인에 실패하였습니다. 다시 시도해주세요."
+                    self.showAlert(message: message)
+                }
                 self.navigationController?.popViewController(animated: true)
             }
         }

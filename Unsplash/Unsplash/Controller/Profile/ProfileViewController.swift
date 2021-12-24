@@ -84,8 +84,9 @@ extension ProfileViewController {
                 self.tableViewHeaderView.configure(selfieURL: profile.profileImage?.mediumURL,
                                                    name: profile.userName)
                 self.userName = profile.userName
-            case .failure(let error):
-                debugPrint("좋아하는 사진 가져오기 실패", error)
+            case .failure:
+                let message = "사용자 정보를 가져오는데 실패하였습니다. 다시 시도해주세요."
+                self.showAlert(message: message)
             }
         }
     }
@@ -102,6 +103,8 @@ extension ProfileViewController {
                 self.tableView.reloadData()
                 self.page.addPage()
             case .failure(let error):
+                let message = "리스트를 불러오는데 실패하였습니다. 다시 시도해주세요."
+                self.showAlert(message: message)
                 debugPrint(error)
             }
         }
