@@ -28,6 +28,7 @@ class UnsplashTabbarController: UITabBarController {
     //MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureTabBarController()
         setupTabBarItem(for: searchViewController)
         setupTabBarItem(for: profileViewController)
         setupTabBarItem(for: loginViewController)
@@ -36,13 +37,17 @@ class UnsplashTabbarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         configureNavigation()
-        configureTabBarController()
+        configureTabBarViewControllers()
     }
 }
 
 //MARK: - Method
 extension UnsplashTabbarController {
     private func configureTabBarController() {
+        delegate = self
+    }
+    
+    private func configureTabBarViewControllers() {
         if isTokenSaved {
             viewControllers = [searchViewController, profileViewController]
         } else {
@@ -59,7 +64,7 @@ extension UnsplashTabbarController {
         let tabBarItem = UITabBarItem(title: info.barTitle,
                                       image: tabBarNomalImage,
                                       selectedImage: tabBarSelectedImage)
-       
+        
         controller.tabBarItem = tabBarItem
     }
     
@@ -76,7 +81,8 @@ extension UnsplashTabbarController {
         
         let searchIndex = 0
         let profileIndex = 1
-        selectedIndex = searchIndex
+        setSelectedIndex(at: searchIndex)
+        
         viewControllers?[profileIndex] = loginViewController
     }
     
@@ -86,5 +92,29 @@ extension UnsplashTabbarController {
         } else {
             navigationController?.pushViewController(Oauth2ViewController(), animated: true)
         }
+    }
+}
+
+//MARK: - TabBarController Transition Animation
+extension UnsplashTabbarController: UITabBarControllerDelegate {
+    func setSelectedIndex(at index: Int) {
+        guard let currentViewcontroller = viewControllers?[index] else { return }
+        let _ = self.tabBarController(self, shouldSelect: currentViewcontroller)
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        guard let fromView = selectedViewController?.view, let toView = viewController.view else {
+            return false
+        }
+        
+        if fromView != toView {
+            UIView.transition(from: fromView,
+                              to: toView,
+                              duration: 0.3, options: [.transitionCrossDissolve])
+            
+            self.selectedViewController = viewController
+        }
+        
+        return true
     }
 }
