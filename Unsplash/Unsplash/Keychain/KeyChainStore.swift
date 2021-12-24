@@ -8,6 +8,11 @@
 import Foundation
 import Security
 
+
+protocol KeyChainStoreDelegate: AnyObject {
+    func didFinishedDeleteValue()
+}
+
 struct KeyChainStore {
     enum KeyChainError: Error {
         case stringToDataConversionError
@@ -16,6 +21,7 @@ struct KeyChainStore {
     
     //MARK: Properties
     private var queryable: KeyChainQueryable
+    weak var delegate: KeyChainStoreDelegate?
     
     //MARK: init
     init(queryable: KeyChainQueryable) {
@@ -82,12 +88,14 @@ extension KeyChainStore {
         query[String(kSecAttrAccount)] = userAccount
         
         SecItemDelete(query as CFDictionary)
+        delegate?.didFinishedDeleteValue()
     }
     
     func removeAll() {
         let query = queryable.query
         
         SecItemDelete(query as CFDictionary)
+        delegate?.didFinishedDeleteValue()
     }
     
     func isKeySaved(for userAccount: String) -> Bool {
