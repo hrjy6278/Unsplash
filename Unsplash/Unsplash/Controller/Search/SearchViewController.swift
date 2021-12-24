@@ -50,6 +50,12 @@ class SearchViewController: UIViewController {
         reloadPhotos()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        if TokenManager.shared.isTokenSaved {
+            query = ""
+        }
+    }
+    
     deinit {
         removeNotificationObserver()
     }
@@ -104,6 +110,7 @@ extension SearchViewController: HierarchySetupable {
 extension SearchViewController {
     private func reloadPhotos() {
         guard photos.isEmpty == false,
+              query != "",
               TokenManager.shared.isTokenSaved else { return }
         photos = []
         page = 1
