@@ -15,7 +15,7 @@ final class TokenManager {
     
     //MARK: Properties
     private let userAccount = "accessToken"
-    private let keyChaineStore = KeyChainStore(queryable: TokenQuery())
+    private var keyChaineStore = KeyChainStore(queryable: TokenQuery())
     
     var isTokenSaved: Bool {
         return keyChaineStore.isKeySaved(for: userAccount) ? true : false
@@ -24,7 +24,9 @@ final class TokenManager {
     static let shared = TokenManager()
     
     //MARK: init
-    private init() { }
+    private init() {
+        keyChaineStore.delegate = self
+    }
 }
 
 //MARK: - Method
@@ -48,5 +50,12 @@ extension TokenManager {
     
     func clearAccessToken() {
         keyChaineStore.removeValue(for: userAccount)
+    }
+}
+
+//MARK: - KeyChain Store Delegate
+extension TokenManager: KeyChainStoreDelegate {
+    func didFinishedDeleteValue() {
+        NotificationCenter.default.post(name: .didFinishedDeleteKeyChainValue, object: nil)
     }
 }

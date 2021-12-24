@@ -42,6 +42,7 @@
 		74BCE1EE276C76DF0093B1E6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 74BCE1ED276C76DF0093B1E6 /* Alamofire */; };
 		74BCE1F1276C76F80093B1E6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 74BCE1F0276C76F80093B1E6 /* Kingfisher */; };
 		74CE8D30277494B1008BD593 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D2F277494B1008BD593 /* LoginViewController.swift */; };
+		74CE8D32277560AB008BD593 /* Extention + Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +100,7 @@
 		74BCE1DD276C703E0093B1E6 /* UnsplashUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashTabbarController.swift; sourceTree = "<group>"; };
 		74CE8D2F277494B1008BD593 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extention + Notification.Name.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			children = (
 				74A2259F276ECBE1002DB300 /* Extension + UITableView.swift */,
 				74A225C4277188EA002DB300 /* Extension + URL.swift */,
+				74CE8D31277560AB008BD593 /* Extention + Notification.Name.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				74A225BD2770BEA1002DB300 /* KeyChainQueryable.swift in Sources */,
 				74A225BB2770B93A002DB300 /* TokenManager.swift in Sources */,
 				74BCE1BD276C703B0093B1E6 /* SceneDelegate.swift in Sources */,
+				74CE8D32277560AB008BD593 /* Extention + Notification.Name.swift in Sources */,
 				74A225BF2770BF93002DB300 /* TokenQuery.swift in Sources */,
 				74A225D42772EC1B002DB300 /* ImageListDataSource.swift in Sources */,
 				74A225DA27732A6E002DB300 /* ProfileHeaderView.swift in Sources */,
