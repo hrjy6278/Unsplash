@@ -31,14 +31,16 @@ extension Oauth2ViewController {
         
         webAuthenticationSession = ASWebAuthenticationSession(url: URL,
                                                               callbackURLScheme: ASwebCallbackURLScheme) { [weak self] callBackURL, erorr in
+            guard let self = self else { return }
+            
             guard erorr == nil,
                   let callBackURL = callBackURL else { return }
             
             guard let accessCode = callBackURL.getValue(for: "code") else { return }
            
-            self?.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
+            self.unsplashAPIManager.fetchAccessToken(accessCode: accessCode) { isSuccess in
                 guard isSuccess else { return }
-                self?.navigationController?.popViewController(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
         }
         webAuthenticationSession?.presentationContextProvider = self

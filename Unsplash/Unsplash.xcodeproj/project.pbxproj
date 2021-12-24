@@ -318,8 +318,8 @@
 			children = (
 				74BCE1EA276C75380093B1E6 /* UnsplashTabbarController.swift */,
 				74A225D22772EC0C002DB300 /* ImageListDataSource */,
-				74A225CA27722A89002DB300 /* Login */,
 				74A225C927722A74002DB300 /* Profile */,
+				74A225CA27722A89002DB300 /* Login */,
 				74A225C827722A6A002DB300 /* Search */,
 			);
 			path = Controller;

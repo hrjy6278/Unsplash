@@ -53,7 +53,7 @@ class SearchViewController: UIViewController, TabBarImageInfo {
     }
 }
 
-//MARK: - Method
+//MARK: - Configure Views And Layout
 extension SearchViewController: HierarchySetupable {
     func setupViewHierarchy() {
         view.addSubview(tableView)
@@ -90,7 +90,7 @@ extension SearchViewController: HierarchySetupable {
 
 //MARK: - NetworkService
 extension SearchViewController {
-    func reloadPhotos() {
+    private func reloadPhotos() {
         guard photos.isEmpty == false,
               TokenManager.shared.isTokenSaved else { return }
         photos = []
@@ -98,7 +98,7 @@ extension SearchViewController {
         searchPhotos()
     }
     
-    func searchPhotos() {
+    private func searchPhotos() {
         networkService.searchPhotos(type: SearchPhoto.self,
                                     query: query,
                                     page: page) { [weak self] result in

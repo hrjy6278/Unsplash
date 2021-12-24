@@ -58,7 +58,6 @@ extension ProfileViewController: HierarchySetupable {
 //MARK: - Configure Views
 extension ProfileViewController {
     func configureTableView() {
-        
         tableViewHeaderView.frame.size.height = view.frame.size.height / 8
         tableView.rowHeight = view.frame.size.height / 4
         tableView.tableHeaderView = tableViewHeaderView
@@ -87,7 +86,9 @@ extension ProfileViewController {
     }
     
     func fetchUserLikePhotos(userName: String) {
-        networkService.fetchUserLikePhotos(userName: userName, page: self.page) { result in
+        networkService.fetchUserLikePhotos(userName: userName, page: self.page) { [weak self] result in
+            guard let self = self else { return }
+            
             switch result {
             case .success(let photos):
                 photos.forEach { self.tableViewdataSource.photos.append($0) }
@@ -100,6 +101,7 @@ extension ProfileViewController {
     }
 }
 
+//MARK: - ImageList DataSource Delegate
 extension ProfileViewController: ImageListDataSourceDelegate {
     func morePhotos() {
         fetchUserLikePhotos(userName: userName)
