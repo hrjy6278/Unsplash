@@ -114,13 +114,14 @@ imageListDataSource를 채택한 테이블 뷰가 Controller에 선언되어있�
 
 
 ## 해결하지 못한점
+- 탭바에 네비게이션과 관련한 코드가 있어서 책임에 위반되는 행위가 아닌가 싶은 생각이 든다. 현재 NavigationViewController -> TabBarController 이렇게 `Embed` 되어있는데 이부분을 TabBarController -> NavigationController 로 바꿔주는게 나을것 같다.
 - TableView reloadData() 메서드 실행시에 tableView가 깜빡거리는 현상이 있습니다. 시간이 부족하여 어떻게 해야 할까 생각만하고 처리하지 못했습니다. 이 부분은 계속 해결을 위해 시도해볼 예정입니다.
     - 알아본 해결방법
         - TableView reloadSection 메서드 활용하기.
         - TableView performBatchUpdates 메서드 활용하기.
 
 - RxSwift, Rxcocoa를 써보고 싶었지만, 아직 공부 단계라 써보질 못했습니다.
-- Client ID, ClientSecret 부분을 숨김 처리하려고 했으나 시간이 없어 하질 못했습니다.
+- Client ID, ClientSecret 부분을 숨김 처리하려고 했으나 방법이 떠오르지 않아 처리하질 못했다.
     - 검색을 조금 해본 결과 info.plist에 해당 내역들을 추가 한 뒤 
-xcconfig에 값을 저장한 뒤 사용 해볼 수 있을 것 같습니다. 
+xcconfig에 값을 저장한 뒤 사용 해볼 수 있을 것 같다.
      참고내용 https://medium.com/swift-india/secure-secrets-in-ios-app-9f66085800b4
